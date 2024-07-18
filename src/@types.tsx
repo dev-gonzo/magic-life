@@ -39,7 +39,7 @@ export type Position = "horizontal" | "vertical";
 
 export type DirectionSide = "left" | "right";
 
-export type Layer = "life" | "energy" | "infect" | "experience" | "commanderTax";
+export type Layer = "life" | "energy" | "infect" | "experience" | "commanderTax" | "rad";
 
 export type Counter = {
   playerNumber: number;

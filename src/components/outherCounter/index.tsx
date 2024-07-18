@@ -64,12 +64,16 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
           }
         />
       </Stack>
-      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}>
+      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}
+              onClick={() => {
+                toggleControl("rad");
+                updatePlayers({ ...player, rad: player?.rad + 1 });
+              }}>
         <LeftRight
           direction={direction}
           Value={
             <Typography component={"span"} variant="caption">
-              2
+              {player?.rad}
             </Typography>
           }
           Icon={<FaRadiation size={22} />}
