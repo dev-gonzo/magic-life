@@ -15,13 +15,15 @@ export const useCounterRad = (playerId: number) => {
   };
 
   const subRad = () => {
+    if (player.rad > 0) {
     const newInfoPlayer: InfoPlayer = {
       ...player,
       rad: player?.rad - 1,
     };
-    setShowTemp(playerId, "rad");
     updatePlayers(newInfoPlayer);
-  };
+  }
+  setShowTemp(playerId, "rad");
+};
 
   return {
     addRad,

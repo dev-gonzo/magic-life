@@ -15,12 +15,14 @@ export const useCounterInfect = (playerId: number) => {
   };
 
   const subInfect = () => {
+    if (player.infect > 0) {
     const newInfoPlayer: InfoPlayer = {
       ...player,
       infect: player?.infect - 1,
     };
-    setShowTemp(playerId, "infect");
     updatePlayers(newInfoPlayer);
+  }
+  setShowTemp(playerId, "infect");
   };
 
   return {
