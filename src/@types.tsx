@@ -19,6 +19,7 @@ export type InfoPlayer = {
   experience: number;
   citysBlessing: boolean;
   monarch: boolean;
+  viewCommanderDamage: boolean;
 };
 
 export type DamageCommander = {
@@ -39,7 +40,15 @@ export type Position = "horizontal" | "vertical";
 
 export type DirectionSide = "left" | "right";
 
-export type Layer = "life" | "energy" | "infect" | "experience" | "commanderTax" | "rad" | "citysBlessing" | "monarch";
+export type Layer =
+  | "life"
+  | "energy"
+  | "infect"
+  | "experience"
+  | "commanderTax"
+  | "rad"
+  | "citysBlessing"
+  | "monarch";
 
 export type Counter = {
   playerNumber: number;

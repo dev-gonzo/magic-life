@@ -26,6 +26,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
             experience: 0,
             citysBlessing: false,
             monarch: false,
+            viewCommanderDamage: false,
           });
         }
       } else if (!playersNumber && !oldPlayersQtd) {
@@ -41,6 +42,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
             experience: 0,
             citysBlessing: false,
             monarch: false,
+            viewCommanderDamage: false,
           });
         }
       } else {
@@ -115,9 +117,11 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
 
       const damageCommanderIndex = newInfoPlayers[
         indexPlayer
-      ]?.commanderDamage?.findIndex(
-        (item) => item?.commander == commanderId && item?.player == playerCommander
-      );
+      ]?.commanderDamage?.findIndex((item) => {
+        return (
+          item?.commander == commanderId && item?.player == playerCommander
+        );
+      });
 
       if (damageCommanderIndex > -1) {
         const damageCommander = newInfoPlayers[indexPlayer]?.commanderDamage;
@@ -130,6 +134,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
         newInfoPlayers[indexPlayer] = {
           ...newInfoPlayers[indexPlayer],
           commanderDamage: damageCommander,
+          life: newInfoPlayers[indexPlayer]?.life - 1,
         };
 
         localStorage.setItem("players", JSON.stringify(newInfoPlayers));
@@ -141,18 +146,19 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
         commanderDamage: [
           ...newInfoPlayers[indexPlayer].commanderDamage,
           {
-            player: playerId,
+            player: playerCommander,
             commander: commanderId,
             damage: 1,
           },
         ],
+        life: newInfoPlayers[indexPlayer]?.life - 1,
       };
 
       localStorage.setItem("players", JSON.stringify(newInfoPlayers));
       return { players: newInfoPlayers };
     }),
 
-  subCommanderDamage: (playerId, commanderId) =>
+  subCommanderDamage: (playerId, playerCommander, commanderId) =>
     set((state) => {
       const newInfoPlayers = state?.players;
 
@@ -163,7 +169,8 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
       const damageCommanderIndex = newInfoPlayers[
         indexPlayer
       ]?.commanderDamage?.findIndex(
-        (item) => item?.commander == commanderId && item?.player == playerId
+        (item) =>
+          item?.commander == commanderId && item?.player == playerCommander
       );
 
       if (damageCommanderIndex > -1) {
@@ -180,6 +187,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
         newInfoPlayers[indexPlayer] = {
           ...newInfoPlayers[indexPlayer],
           commanderDamage: damageCommander,
+          life: newInfoPlayers[indexPlayer]?.life + 1,
         };
 
         localStorage.setItem("players", JSON.stringify(newInfoPlayers));
@@ -226,6 +234,23 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
           timestamp: new Date().getTime() + 1500,
         },
       };
+    }),
+
+  toogleShowCommander: (playerId) =>
+    set((state) => {
+      const newInfoPlayers = state?.players;
+
+      const indexPlayer = newInfoPlayers?.findIndex(
+        (item) => item?.player == playerId
+      );
+
+      newInfoPlayers[indexPlayer] = {
+        ...newInfoPlayers[indexPlayer],
+        viewCommanderDamage: !newInfoPlayers[indexPlayer]?.viewCommanderDamage,
+      };
+
+      localStorage.setItem("players", JSON.stringify(newInfoPlayers));
+      return { players: newInfoPlayers };
     }),
 
   cleanShowTemp: () =>

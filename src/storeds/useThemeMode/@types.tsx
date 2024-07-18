@@ -30,10 +30,14 @@ export type PropsInfoPlayers = {
     playerCommander: number,
     commanderId: number
   ) => void;
-  subCommanderDamage: (playerId: number, commanderId: number) => void;
+  subCommanderDamage: (
+    playerId: number,
+    playerCommander: number,
+    commanderId: number
+  ) => void;
 
   setMonarch: (playerId: number) => void;
-
+  toogleShowCommander: (playerId: number) => void;
   setShowTemp: (playerId: number, layer: Layer) => void;
   cleanShowTemp: () => void;
 };

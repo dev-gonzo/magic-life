@@ -1,21 +1,21 @@
-import { Typography } from "@mui/material";
-import { CounterEnergy } from "../counterEnergy";
-import { CounterLife } from "../counterLife";
-import { MoreCounter } from "../moreCounter";
-import { OutherCounter } from "../outherCounter";
-import { CounterInfect } from "../counterInfect";
-import { CounterExperience } from "../counterExperience";
 import { CounterCommanderTax } from "../counterCommandeTax";
+import { CounterEnergy } from "../counterEnergy";
+import { CounterExperience } from "../counterExperience";
+import { CounterInfect } from "../counterInfect";
+import { CounterLife } from "../counterLife";
 import { CounterRad } from "../counterRad";
+import { FooterCommander } from "../footerCommander";
 import { MarkedCitysBlessing } from "../markedCitysBlessing";
 import { MarkedMonarchs } from "../markedMonarch";
+import { MoreCounter } from "../moreCounter";
+import { OutherCounter } from "../outherCounter";
 
 export const dataLayers = (playerId: number) => {
   return {
     life: {
       title: `Player ${playerId}`,
       main: <CounterLife playerId={playerId} />,
-      footer: <Typography color={"white"}>footer</Typography>,
+      footer: <FooterCommander playerId={playerId}/>,
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,
       sideRight: <OutherCounter playerId={playerId} direction="right" />,
     },
