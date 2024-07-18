@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 
-export const useLifeCounter = (playerId: number) => {
+export const useCounterLife = (playerId: number) => {
   const { addLife, subLife } = useGamePlayers();
   const addIntervalId = useRef<ReturnType<typeof setInterval> | null>(null);
   const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);

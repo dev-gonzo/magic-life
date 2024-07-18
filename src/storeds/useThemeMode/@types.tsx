@@ -25,7 +25,11 @@ export type PropsInfoPlayers = {
   addLife: (playerId: number) => void;
   subLife: (playerId: number) => void;
 
-  addCommanderDamage: (playerId: number, commanderId: number) => void;
+  addCommanderDamage: (
+    playerId: number,
+    playerCommander: number,
+    commanderId: number
+  ) => void;
   subCommanderDamage: (playerId: number, commanderId: number) => void;
 
   setMonarch: (playerId: number) => void;

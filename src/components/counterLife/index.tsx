@@ -5,10 +5,11 @@ import {
 } from "react-icons/tb";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { Props } from "./types";
-import { useLifeCounter } from "./useLifeCounter";
+import { useCounterLife } from "./useCounterLife";
+import { CommanderDamage } from "./commanderDamage";
 
 export const CounterLife = ({ playerId }: Props) => {
-  const { dropAdd, dropMinus, pressAdd, pressMinus } = useLifeCounter(playerId);
+  const { dropAdd, dropMinus, pressAdd, pressMinus } = useCounterLife(playerId);
   const { getPlayer, addLife, subLife } = useGamePlayers();
   const player = getPlayer(playerId);
 
@@ -57,6 +58,9 @@ export const CounterLife = ({ playerId }: Props) => {
           </Button>
         </Box>
       </Stack>
+      <Box>
+        <CommanderDamage playerId={playerId} />
+      </Box>
     </>
   );
 };

@@ -18,7 +18,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
           newPlayers.push({
             player: i + 1,
             life: 40,
-            commanderDamage: [],
+            commanderDamage: [{ player: 2, commander: 1, damage: 10 }],
             commanderTax: 0,
             infect: 0,
             rad: 0,
@@ -33,7 +33,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
           newPlayers.push({
             player: i + 1,
             life: 40,
-            commanderDamage: [],
+            commanderDamage: [{ player: 2, commander: 1, damage: 10 }],
             commanderTax: 0,
             infect: 0,
             rad: 0,
@@ -105,7 +105,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
       return { players: newInfoPlayers };
     }),
 
-  addCommanderDamage: (playerId, commanderId) =>
+  addCommanderDamage: (playerId, playerCommander, commanderId) =>
     set((state) => {
       const newInfoPlayers = state?.players;
 
@@ -116,7 +116,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
       const damageCommanderIndex = newInfoPlayers[
         indexPlayer
       ]?.commanderDamage?.findIndex(
-        (item) => item?.commander == commanderId && item?.player == playerId
+        (item) => item?.commander == commanderId && item?.player == playerCommander
       );
 
       if (damageCommanderIndex > -1) {
