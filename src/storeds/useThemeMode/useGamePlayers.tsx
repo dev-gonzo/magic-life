@@ -23,7 +23,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
             infect: 0,
             rad: 0,
             energy: 0,
-            experence: 0,
+            experience: 0,
             citysBlessing: false,
             monarch: false,
           });
@@ -38,7 +38,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
             infect: 0,
             rad: 0,
             energy: 0,
-            experence: 0,
+            experience: 0,
             citysBlessing: false,
             monarch: false,
           });

@@ -16,7 +16,7 @@ export type InfoPlayer = {
   infect: number;
   rad: number;
   energy: number;
-  experence: number;
+  experience: number;
   citysBlessing: boolean;
   monarch: boolean;
 };
@@ -39,7 +39,7 @@ export type Position = "horizontal" | "vertical";
 
 export type DirectionSide = "left" | "right";
 
-export type Layer =  "life" | "energy" | "infect";
+export type Layer = "life" | "energy" | "infect" | "experience";
 
 export type Counter = {
   playerNumber: number;

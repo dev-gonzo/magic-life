@@ -17,7 +17,7 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
 
   const toggleControl = (value: Layer) => {
     if (showTemp?.layer != value) {
-      setShowTemp(playerId, "energy");
+      setShowTemp(playerId, value);
     }
   };
 
@@ -49,12 +49,20 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
           Icon={<RiShieldFlashFill size={22} />}
         />
       </Stack>
-      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}>
+      <Stack
+        flexDirection={"row"}
+        alignItems={"center"}
+        gap={0.5}
+        onClick={() => {
+          toggleControl("experience");
+          updatePlayers({ ...player, experience: player?.experience + 1 });
+        }}
+      >
         <LeftRight
           direction={direction}
           Value={
             <Typography component={"span"} variant="caption">
-              2
+              {player?.experience}
             </Typography>
           }
           Icon={<GiCheckedShield size={22} />}
