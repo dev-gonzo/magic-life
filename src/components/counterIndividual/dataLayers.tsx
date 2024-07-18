@@ -8,6 +8,7 @@ import { CounterExperience } from "../counterExperience";
 import { CounterCommanderTax } from "../counterCommandeTax";
 import { CounterRad } from "../counterRad";
 import { MarkedCitysBlessing } from "../markedCitysBlessing";
+import { MarkedMonarchs } from "../markedMonarch";
 
 export const dataLayers = (playerId: number) => {
   return {
@@ -56,6 +57,13 @@ export const dataLayers = (playerId: number) => {
     citysBlessing: {
       title: "City`s Blessing",
       main: <MarkedCitysBlessing playerId={playerId} />,
+      footer: <></>,
+      sideLeft: <MoreCounter playerId={playerId} direction="left" />,
+      sideRight: <OutherCounter playerId={playerId} direction="right" />,
+    },
+    monarch: {
+      title: "City`s Blessing",
+      main: <MarkedMonarchs playerId={playerId} />,
       footer: <></>,
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,
       sideRight: <OutherCounter playerId={playerId} direction="right" />,
