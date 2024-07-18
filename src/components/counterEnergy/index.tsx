@@ -26,7 +26,7 @@ export const CounterEnergy = ({ playerId }: Props) => {
         </Box>
         <Box>
           <Typography
-            variant="h3" /// tamanho font
+            variant="h3"
             color={"white"}
             fontWeight={"bold"}
             fontFamily={"monospace"}

@@ -10,8 +10,6 @@ export const useCouterIndividual = (playerId: number) => {
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  console.log(showTemp)
-
   useEffect(() => {
     if (showTemp?.timestamp && showTemp?.playerId == playerId) {
       setLayerView(layers?.[showTemp.layer]);
