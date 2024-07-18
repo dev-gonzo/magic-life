@@ -11,14 +11,14 @@ export const dataLayers = (playerId: number) => {
       main: <CounterLife playerId={playerId} />,
       footer: <Typography color={"white"}>footer</Typography>,
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,
-      sideRight: <OutherCounter direction="right" />,
+      sideRight: <OutherCounter playerId={playerId} direction="right" />,
     },
     energy: {
       title: `Energy Counter`,
       main: <CounterEnergy playerId={playerId} />,
       footer: <Typography color={"white"}>footer</Typography>,
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,
-      sideRight: <OutherCounter direction="right" />,
+      sideRight: <OutherCounter playerId={playerId} direction="right" />,
     },
   };
 };
