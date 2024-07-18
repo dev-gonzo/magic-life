@@ -68,10 +68,24 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
           Icon={<GiCheckedShield size={22} />}
         />
       </Stack>
-      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}>
+      <Stack
+        flexDirection={"row"}
+        alignItems={"center"}
+        gap={0.5}
+        onClick={() => {
+          toggleControl("citysBlessing");
+          updatePlayers({ ...player, citysBlessing: !player?.citysBlessing });
+        }}
+      >
         <LeftRight
           direction={direction}
-          Value={<FaDotCircle size={10} color="yellow" />}
+          Value={
+            player?.citysBlessing ? (
+              <FaDotCircle size={10} color="yellow" />
+            ) : (
+              <></>
+            )
+          }
           Icon={<GiMedievalGate size={22} />}
         />
       </Stack>

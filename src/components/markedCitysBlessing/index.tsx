@@ -1,14 +1,11 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import {
-  TbArrowBadgeLeftFilled,
-  TbArrowBadgeRightFilled,
-} from "react-icons/tb";
+  GiMedievalGate
+} from "react-icons/gi";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { Props } from "./types";
-import { useCitysBlessing } from "./useCitysBlessing";
 
 export const MarkedCitysBlessing = ({ playerId }: Props) => {
-  const { addEnergy, subEnergy } = useCitysBlessing(playerId);
   const { getPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
 
@@ -19,29 +16,20 @@ export const MarkedCitysBlessing = ({ playerId }: Props) => {
         alignItems={"center"}
         flexDirection={"row"}
       >
-        <Box>
-          <Button onClick={() => subEnergy()} sx={{ color: "white" }}>
-            <TbArrowBadgeLeftFilled size={40} />
-          </Button>
-        </Box>
-        <Box>
+        <Box textAlign={"center"}>
+          <GiMedievalGate color="white" size={44} />
           <Typography
-            variant="h3"
+            variant="body1"
             color={"white"}
             fontWeight={"bold"}
+            textAlign={"center"}
             fontFamily={"monospace"}
-            sx={{ textShadow: "2px 2px black" }}
+            sx={{ textShadow: "1px 1px black" }}
           >
-            {player?.energy}
+            {player?.citysBlessing
+              ? "You have the city`s blessing"
+              : "You removed the city`s blessing"}
           </Typography>
-        </Box>
-        <Box>
-          <Button
-            onClick={() => addEnergy()}
-            sx={{ color: "white", textShadow: "2px 2px black" }}
-          >
-            <TbArrowBadgeRightFilled size={40} />
-          </Button>
         </Box>
       </Stack>
     </>

@@ -7,6 +7,7 @@ import { CounterInfect } from "../counterInfect";
 import { CounterExperience } from "../counterExperience";
 import { CounterCommanderTax } from "../counterCommandeTax";
 import { CounterRad } from "../counterRad";
+import { MarkedCitysBlessing } from "../markedCitysBlessing";
 
 export const dataLayers = (playerId: number) => {
   return {
@@ -54,7 +55,7 @@ export const dataLayers = (playerId: number) => {
     },
     citysBlessing: {
       title: "City`s Blessing",
-      main: <CounterRad playerId={playerId} />,
+      main: <MarkedCitysBlessing playerId={playerId} />,
       footer: <></>,
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,
       sideRight: <OutherCounter playerId={playerId} direction="right" />,
