@@ -1,8 +1,9 @@
 import { Typography } from "@mui/material";
+import { CounterEnergy } from "../counterEnergy";
 import { CounterLife } from "../counterLife";
 import { MoreCounter } from "../moreCounter";
 import { OutherCounter } from "../outherCounter";
-import { CounterEnergy } from "../counterEnergy";
+import { CounterInfect } from "../counterInfect";
 
 export const dataLayers = (playerId: number) => {
   return {
@@ -11,14 +12,21 @@ export const dataLayers = (playerId: number) => {
       main: <CounterLife playerId={playerId} />,
       footer: <Typography color={"white"}>footer</Typography>,
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,
-      sideRight: <OutherCounter direction="right" />,
+      sideRight: <OutherCounter playerId={playerId} direction="right" />,
     },
     energy: {
       title: `Energy Counter`,
       main: <CounterEnergy playerId={playerId} />,
-      footer: <Typography color={"white"}>footer</Typography>,
+      footer: <></>,
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,
-      sideRight: <OutherCounter direction="right" />,
+      sideRight: <OutherCounter playerId={playerId} direction="right" />,
+    },
+    infect: {
+      title: `Infect Counter`,
+      main: <CounterInfect playerId={playerId} />,
+      footer: <></>,
+      sideLeft: <MoreCounter playerId={playerId} direction="left" />,
+      sideRight: <OutherCounter playerId={playerId} direction="right" />,
     },
   };
 };

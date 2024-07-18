@@ -4,12 +4,20 @@ import { FaRadiation } from "react-icons/fa6";
 import { GiRollingDices } from "react-icons/gi";
 import { LeftRight } from "../LeftRight";
 import Phyrexia from "../../assets/phyrexa.svg";
+import { Props } from "./types";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
+import { Layer } from "../../@types";
 
-export const OutherCounter = ({
-  direction,
-}: {
-  direction: "left" | "right";
-}) => {
+export const OutherCounter = ({ direction, playerId }: Props) => {
+  const { getPlayer, updatePlayers, setShowTemp, showTemp } = useGamePlayers();
+  const player = getPlayer(playerId);
+
+  const toggleControl = (value: Layer) => {
+    if (showTemp?.layer != value) {
+      setShowTemp(playerId, "infect");
+    }
+  };
+
   return (
     <Stack
       paddingY={1}
@@ -31,12 +39,20 @@ export const OutherCounter = ({
         />
       </Stack>
 
-      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}>
+      <Stack
+        flexDirection={"row"}
+        alignItems={"center"}
+        gap={0.5}
+        onClick={() => {
+          toggleControl("infect");
+          updatePlayers({ ...player, infect: player?.infect + 1 });
+        }}
+      >
         <LeftRight
           direction={direction}
           Value={
             <Typography component={"span"} variant="caption">
-              2
+              {player?.infect}
             </Typography>
           }
           Icon={
