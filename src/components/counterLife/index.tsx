@@ -34,7 +34,7 @@ export const CounterLife = ({ playerId }: Props) => {
         </Box>
         <Box>
           <Typography
-            variant="h3" /// tamanho font
+            variant="h3"
             color={player?.life ? "white" : "red"}
             fontWeight={"bold"}
             fontFamily={"monospace"}

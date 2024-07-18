@@ -20,13 +20,13 @@ export const CounterInfect = ({ playerId }: Props) => {
         flexDirection={"row"}
       >
         <Box>
-          <Button onClick={() => addInfect()} sx={{ color: "white" }}>
+          <Button onClick={() => subInfect()} sx={{ color: "white" }}>
             <TbArrowBadgeLeftFilled size={40} />
           </Button>
         </Box>
         <Box>
           <Typography
-            variant="h3" /// tamanho font
+            variant="h3"
             color={"white"}
             fontWeight={"bold"}
             fontFamily={"monospace"}
@@ -37,7 +37,7 @@ export const CounterInfect = ({ playerId }: Props) => {
         </Box>
         <Box>
           <Button
-            onClick={() => subInfect()}
+            onClick={() => addInfect()}
             sx={{ color: "white", textShadow: "2px 2px black" }}
           >
             <TbArrowBadgeRightFilled size={40} />
