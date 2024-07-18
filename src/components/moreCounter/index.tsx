@@ -17,7 +17,7 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
 
   const toggleControl = (value: Layer) => {
     if (showTemp?.layer != value) {
-      setShowTemp(playerId, "energy");
+      setShowTemp(playerId, value);
     }
   };
 

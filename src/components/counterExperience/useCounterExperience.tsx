@@ -5,26 +5,26 @@ export const useCounterExperience = (playerId: number) => {
   const { updatePlayers, getPlayer, setShowTemp } = useGamePlayers();
   const player = getPlayer(playerId);
 
-  const addEnergy = () => {
+  const addExperience = () => {
     const newInfoPlayer: InfoPlayer = {
       ...player,
-      energy: player?.energy + 1,
+      experience: player?.experience + 1,
     };
-    setShowTemp(playerId, "energy");
+    setShowTemp(playerId, "experience");
     updatePlayers(newInfoPlayer);
   };
 
-  const subEnergy = () => {
+  const subExperience = () => {
     const newInfoPlayer: InfoPlayer = {
       ...player,
-      energy: player?.energy - 1,
+      experience: player?.experience - 1,
     };
-    setShowTemp(playerId, "energy");
+    setShowTemp(playerId, "experience");
     updatePlayers(newInfoPlayer);
   };
 
   return {
-    addEnergy,
-    subEnergy,
+    addExperience,
+    subExperience,
   };
 };

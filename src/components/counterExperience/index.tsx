@@ -8,7 +8,7 @@ import { Props } from "./types";
 import { useCounterExperience } from "./useCounterExperience";
 
 export const CounterExperience = ({ playerId }: Props) => {
-  const { addEnergy, subEnergy } = useCounterExperience(playerId);
+  const { addExperience, subExperience } = useCounterExperience(playerId);
   const { getPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
 
@@ -20,24 +20,24 @@ export const CounterExperience = ({ playerId }: Props) => {
         flexDirection={"row"}
       >
         <Box>
-          <Button onClick={() => subEnergy()} sx={{ color: "white" }}>
+          <Button onClick={() => subExperience()} sx={{ color: "white" }}>
             <TbArrowBadgeLeftFilled size={40} />
           </Button>
         </Box>
         <Box>
           <Typography
-            variant="h3" /// tamanho font
+            variant="h3"
             color={"white"}
             fontWeight={"bold"}
             fontFamily={"monospace"}
             sx={{ textShadow: "2px 2px black" }}
           >
-            {player?.energy}
+            {player?.experience}
           </Typography>
         </Box>
         <Box>
           <Button
-            onClick={() => addEnergy()}
+            onClick={() => addExperience()}
             sx={{ color: "white", textShadow: "2px 2px black" }}
           >
             <TbArrowBadgeRightFilled size={40} />
