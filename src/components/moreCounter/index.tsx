@@ -9,12 +9,13 @@ import { RiShieldFlashFill } from "react-icons/ri";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { LeftRight } from "../LeftRight";
 import { Props } from "./types";
+import { Layer } from "../../@types";
 
 export const MoreCounter = ({ direction, playerId }: Props) => {
   const { getPlayer, updatePlayers, setShowTemp, showTemp } = useGamePlayers();
   const player = getPlayer(playerId);
 
-  const toggleControl = (value: string) => {
+  const toggleControl = (value: Layer) => {
     if (showTemp?.layer != value) {
       setShowTemp(playerId, "energy");
     }
