@@ -2,11 +2,11 @@ import { Stack, Typography } from "@mui/material";
 import { BsShieldFillPlus } from "react-icons/bs";
 import { FaRadiation } from "react-icons/fa6";
 import { GiRollingDices } from "react-icons/gi";
-import { LeftRight } from "../LeftRight";
-import Phyrexia from "../../assets/phyrexa.svg";
-import { Props } from "./types";
-import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { Layer } from "../../@types";
+import Phyrexia from "../../assets/phyrexa.svg";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
+import { LeftRight } from "../LeftRight";
+import { Props } from "./types";
 
 export const OutherCounter = ({ direction, playerId }: Props) => {
   const { getPlayer, updatePlayers, setShowTemp, showTemp } = useGamePlayers();
