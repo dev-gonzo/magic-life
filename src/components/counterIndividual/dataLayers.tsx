@@ -52,5 +52,12 @@ export const dataLayers = (playerId: number) => {
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,
       sideRight: <OutherCounter playerId={playerId} direction="right" />,
     },
+    citysBlessing: {
+      title: "City`s Blessing",
+      main: <CounterRad playerId={playerId} />,
+      footer: <></>,
+      sideLeft: <MoreCounter playerId={playerId} direction="left" />,
+      sideRight: <OutherCounter playerId={playerId} direction="right" />,
+    },
   };
 };
