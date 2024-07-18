@@ -15,12 +15,14 @@ export const useCounterExperience = (playerId: number) => {
   };
 
   const subExperience = () => {
+    if (player.experience > 0) {
     const newInfoPlayer: InfoPlayer = {
       ...player,
       experience: player?.experience - 1,
     };
-    setShowTemp(playerId, "experience");
     updatePlayers(newInfoPlayer);
+  }
+  setShowTemp(playerId, "experience");
   };
 
   return {

@@ -15,12 +15,14 @@ export const useCounterEnergy = (playerId: number) => {
   };
 
   const subEnergy = () => {
+    if (player.energy > 0) {
     const newInfoPlayer: InfoPlayer = {
       ...player,
       energy: player?.energy - 1,
     };
-    setShowTemp(playerId, "energy");
     updatePlayers(newInfoPlayer);
+    }
+  setShowTemp(playerId, "energy");
   };
 
   return {
