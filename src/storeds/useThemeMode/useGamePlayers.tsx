@@ -190,6 +190,32 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
       return { players: newInfoPlayers };
     }),
 
+  setMonarch: (playerId) =>
+    set((state) => {
+      const oldInfoPlayers = state?.players;
+
+      const indexPlayer = oldInfoPlayers?.findIndex(
+        (item) => item?.player == playerId
+      );
+
+      if (oldInfoPlayers[indexPlayer]?.monarch) {
+        oldInfoPlayers[indexPlayer] = {
+          ...oldInfoPlayers[indexPlayer],
+          monarch: false,
+        };
+
+        localStorage.setItem("players", JSON.stringify(oldInfoPlayers));
+        return { players: oldInfoPlayers };
+      }
+
+      const newInfoPlayers = state.players.map((item) => {
+        return { ...item, monarch: item?.player == playerId };
+      });
+
+      localStorage.setItem("players", JSON.stringify(newInfoPlayers));
+      return { players: newInfoPlayers };
+    }),
+
   setShowTemp: (playerId, layer) =>
     set(() => {
       return {

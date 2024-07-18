@@ -12,7 +12,8 @@ import { Props } from "./types";
 import { Layer } from "../../@types";
 
 export const MoreCounter = ({ direction, playerId }: Props) => {
-  const { getPlayer, updatePlayers, setShowTemp, showTemp } = useGamePlayers();
+  const { getPlayer, updatePlayers, setShowTemp, showTemp, setMonarch } =
+    useGamePlayers();
   const player = getPlayer(playerId);
 
   const toggleControl = (value: Layer) => {
@@ -89,10 +90,24 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
           Icon={<GiMedievalGate size={22} />}
         />
       </Stack>
-      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}>
+      <Stack
+        flexDirection={"row"}
+        alignItems={"center"}
+        gap={0.5}
+        onClick={() => {
+          toggleControl("monarch");
+          setMonarch(playerId);
+        }}
+      >
         <LeftRight
           direction={direction}
-          Value={<FaDotCircle size={10} color="yellow" />}
+          Value={
+            player?.monarch ? (
+              <FaDotCircle size={10} color="yellow" />
+            ) : (
+              <></>
+            )
+          }
           Icon={<GiImperialCrown size={22} />}
         />
       </Stack>
