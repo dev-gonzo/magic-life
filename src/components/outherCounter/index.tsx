@@ -45,7 +45,7 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
         gap={0.5}
         onClick={() => {
           toggleControl("infect");
-          updatePlayers({ ...player, energy: player?.energy + 1 });
+          updatePlayers({ ...player, infect: player?.infect + 1 });
         }}
       >
         <LeftRight
