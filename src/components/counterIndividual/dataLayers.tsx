@@ -5,6 +5,7 @@ import { MoreCounter } from "../moreCounter";
 import { OutherCounter } from "../outherCounter";
 import { CounterInfect } from "../counterInfect";
 import { CounterExperience } from "../counterExperience";
+import { CounterCommanderTax } from "../counterCommandeTax";
 
 export const dataLayers = (playerId: number) => {
   return {
@@ -32,6 +33,13 @@ export const dataLayers = (playerId: number) => {
     experience: {
       title: `Experience Counter`,
       main: <CounterExperience playerId={playerId} />,
+      footer: <></>,
+      sideLeft: <MoreCounter playerId={playerId} direction="left" />,
+      sideRight: <OutherCounter playerId={playerId} direction="right" />,
+    },
+    commanderTax: {
+      title: `CommanderTax Counter`,
+      main: <CounterCommanderTax playerId={playerId} />,
       footer: <></>,
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,
       sideRight: <OutherCounter playerId={playerId} direction="right" />,
