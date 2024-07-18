@@ -14,7 +14,7 @@ export const OutherCounter = ({
     <Stack
       paddingY={1}
       flexWrap={"nowrap"}
-      alignItems={direction == "right" ? "flex-end" : "flex-start"}
+      alignItems={"flex-end"}
       gap={2}
       color={"white"}
       padding={1}

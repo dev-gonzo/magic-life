@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { InfoPlayer } from "../../@types";
+import { InfoPlayer, Layer } from "../../@types";
 
 export type Props = {
   themeMode: "light" | "dark";
@@ -12,7 +12,7 @@ export type Props = {
 export type PropsInfoPlayers = {
   players: InfoPlayer[];
   showTemp?: {
-    title: string;
+    layer: Layer;
     icon: ReactNode;
     playerId: number;
     timestamp: number;
@@ -21,6 +21,13 @@ export type PropsInfoPlayers = {
   initGame: (playersNumber?: number) => void;
   updatePlayers: (infoPlayer: InfoPlayer) => void;
   getPlayer: (playerId: number) => InfoPlayer;
-  setShowTemp: () => void;
-  closShowTemp: () => void;
+
+  addLife: (playerId: number) => void;
+  subLife: (playerId: number) => void;
+
+  addCommanderDamage: (playerId: number, commanderId: number) => void;
+  subCommanderDamage: (playerId: number, commanderId: number) => void;
+
+  setShowTemp: (playerId: number, layer: Layer) => void;
+  cleanShowTemp: () => void;
 };

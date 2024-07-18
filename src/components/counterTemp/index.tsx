@@ -3,11 +3,11 @@ import {
   TbArrowBadgeLeftFilled,
   TbArrowBadgeRightFilled,
 } from "react-icons/tb";
-import { useCounterLife } from "../../storeds/useThemeMode/useCounterLife";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { Props } from "./types";
 
 export const CounterTemp = ({ icon, setValue, value }: Props) => {
-  const { showTemp } = useCounterLife();
+  const { showTemp } = useGamePlayers();
 
   return (
     <>

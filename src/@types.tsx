@@ -1,5 +1,5 @@
 import { SxProps, Theme } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export type StyleSx = SxProps<Theme>;
 
@@ -27,11 +27,19 @@ export type DamageCommander = {
   damage: number;
 };
 
-export type Layers = "life" | "commanderDamage";
+export type Layers = {
+  title: string;
+  main: ReactNode;
+  footer: ReactNode;
+  sideLeft: ReactNode;
+  sideRight: ReactNode;
+};
 
-export type Direction = "horizontal" | "vertical";
+export type Position = "horizontal" | "vertical";
 
 export type DirectionSide = "left" | "right";
+
+export type Layer =  "energy";
 
 export type Counter = {
   playerNumber: number;

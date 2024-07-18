@@ -6,18 +6,17 @@ import {
   GiMedievalGate,
 } from "react-icons/gi";
 import { RiShieldFlashFill } from "react-icons/ri";
-import { useCounterLife } from "../../storeds/useThemeMode/useCounterLife";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { LeftRight } from "../LeftRight";
 import { Props } from "./types";
-import { useState } from "react";
 
 export const MoreCounter = ({ direction, playerId }: Props) => {
-  const { getPlayer, updatePlayers, setShowTemp, showTemp } = useCounterLife();
+  const { getPlayer, updatePlayers, setShowTemp, showTemp } = useGamePlayers();
   const player = getPlayer(playerId);
 
   const toggleControl = (value: string) => {
-    if (showTemp?.title != value) {
-      setShowTemp();
+    if (showTemp?.layer != value) {
+      setShowTemp(playerId, "energy");
     }
   };
 
@@ -25,7 +24,7 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
     <Stack
       paddingY={1}
       flexWrap={"nowrap"}
-      alignItems={"flex-end"}
+      alignItems={"flex-start"}
       gap={2}
       color={"white"}
       padding={1}

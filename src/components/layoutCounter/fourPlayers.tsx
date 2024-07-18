@@ -32,12 +32,7 @@ export const FourPlayers = () => {
               height={"100%"}
               sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
             >
-              <CounterIndividual
-                direction="horizontal"
-                inverse={false}
-                player={1}
-                outerConter="left"
-              />
+              <CounterIndividual playerId={1} />
             </Stack>
           </Stack>
           <Stack
@@ -54,12 +49,7 @@ export const FourPlayers = () => {
               height={"100%"}
               sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
             >
-              <CounterIndividual
-                direction="horizontal"
-                inverse={false}
-                player={2}
-                outerConter="right"
-              />
+              <CounterIndividual playerId={2} />
             </Stack>
           </Stack>
         </Stack>
@@ -85,12 +75,7 @@ export const FourPlayers = () => {
               height={"100%"}
               sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
             >
-              <CounterIndividual
-                direction="horizontal"
-                inverse={false}
-                player={3}
-                outerConter="right"
-              />
+              <CounterIndividual playerId={3} />
             </Stack>
           </Stack>
           <Stack
@@ -107,12 +92,7 @@ export const FourPlayers = () => {
               height={"100%"}
               sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
             >
-              <CounterIndividual
-                direction="horizontal"
-                inverse={false}
-                player={4}
-                outerConter="left"
-              />
+              <CounterIndividual playerId={4} />
             </Stack>
           </Stack>
         </Stack>

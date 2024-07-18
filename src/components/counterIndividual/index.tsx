@@ -1,36 +1,29 @@
-import { CommanderDamage } from "../commanderDamage";
-import { Death } from "../death";
-import { LifeCounter } from "../lifeCounter";
+import { Stack } from "@mui/material";
 import { Props } from "./types";
 import { useCouterIndividual } from "./useCouterIndividual";
 
-export const CounterIndividual = ({
-  direction,
-  inverse,
-  player,
-  outerConter,
-}: Props) => {
-  const counter = useCouterIndividual(player);
-
-  if (counter?.playerDeath) {
-    return <Death revivePlayer={counter.revivePlayer} />;
-  }
+export const CounterIndividual = ({ playerId }: Props) => {
+  const { layerView } = useCouterIndividual(playerId);
 
   return (
     <>
-      {counter?.layerView == "life" ? (
-        <>
-          <LifeCounter
-            counter={counter}
-            direction={direction}
-            inverse={inverse}
-            playerNumber={player}
-            outerConter={outerConter}
-          />
-        </>
-      ) : (
-        <CommanderDamage counter={counter} />
-      )}
+      <Stack
+        height={"100%"}
+        flexDirection={"row"}
+        gap={0.5}
+        bgcolor={"green"}
+        borderRadius={3}
+      >
+        <Stack justifyContent={"center"} width={"20%"}>{layerView?.sideLeft}</Stack>
+        <Stack bgcolor={"red"} flexGrow={1} alignItems={"center"}>
+          <Stack>{layerView?.title}</Stack>
+          <Stack flexGrow={1} justifyContent={"center"} alignItems={"center"}>
+            {layerView?.main}
+          </Stack>
+          <Stack>{layerView?.footer}</Stack>
+        </Stack>
+        <Stack justifyContent={"center"} width={"20%"}>{layerView?.sideRight}</Stack>
+      </Stack>
     </>
   );
 };

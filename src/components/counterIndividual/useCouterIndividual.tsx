@@ -1,145 +1,38 @@
 import { useEffect, useRef, useState } from "react";
-
 import { Layers } from "../../@types";
-import { checkDeathCommander } from "../../helpers/checkDeathCommander";
-import { useCounterLife } from "../../storeds/useThemeMode/useCounterLife";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
+import { dataLayers } from "./dataLayers";
 
-export const useCouterIndividual = (playerNumber: number) => {
-  const { getPlayer, updatePlayers } = useCounterLife();
+export const useCouterIndividual = (playerId: number) => {
+  const layers = dataLayers(playerId);
+  const { showTemp, cleanShowTemp } = useGamePlayers();
+  const [layerView, setLayerView] = useState<Layers>(layers?.life);
 
-  const player = getPlayer(playerNumber);
-  // const infoPlayer = getPlayer(playerNumber);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const [layerView, setLayerView] = useState<Layers>("life");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const addIntervalId = useRef<any>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const timeoutId = useRef<any>(null);
-
-  const [playerDeath, setPlayerDeath] = useState(false);
-
-  const revivePlayer = () => {
-    setPlayerDeath(false);
-  };
-
-  // const deathPlayer = () => {
-  //   setPlayerDeath(true);
-  // };
-
-  const deathByCommander = checkDeathCommander(player?.commanderDamage);
-
-  const addLife = () => {
-    updatePlayers({
-      ...player,
-      life: player?.life + 1,
-    });
-  };
-
-  const minusLife = () => {
-    updatePlayers({
-      ...player,
-      life: player?.life - 1,
-    });
-  };
-
-  const pressAdd = () => {
-    timeoutId.current = setTimeout(() => {
-      if (addIntervalId.current === null) {
-        addIntervalId.current = setInterval(addLife, 200);
-      }
-    }, 300);
-  };
-
-  const dropAdd = () => {
-    clearTimeout(timeoutId.current!);
-    if (addIntervalId.current) {
-      clearInterval(addIntervalId.current);
-      addIntervalId.current = null;
-    }
-  };
-
-  const pressMinus = () => {
-    timeoutId.current = setTimeout(() => {
-      if (addIntervalId.current === null) {
-        addIntervalId.current = setInterval(minusLife, 200);
-      }
-    }, 300);
-  };
-
-  const dropMinus = () => {
-    clearTimeout(timeoutId.current!);
-    if (addIntervalId.current) {
-      clearInterval(addIntervalId.current);
-      addIntervalId.current = null;
-    }
-  };
-
-  const addCommanderDamage = (playerId: number, commanderId: number) => {
-    const damageCommanderIndex = player?.commanderDamage?.findIndex(
-      (item) => item?.commander == commanderId && item?.player == playerId
-    );
-
-    if (damageCommanderIndex > -1) {
-      const damageCommander = player?.commanderDamage;
-
-      damageCommander[damageCommanderIndex] = {
-        ...damageCommander[damageCommanderIndex],
-        damage: damageCommander[damageCommanderIndex]?.damage + 1,
-      };
-
-      minusLife();
-      updatePlayers({
-        ...player,
-        commanderDamage: damageCommander,
-      });
-    }
-  };
-
-  const minusCommanderDamage = (playerId: number, commanderId: number) => {
-    const damageCommanderIndex = player?.commanderDamage?.findIndex(
-      (item) => item?.commander == commanderId && item?.player == playerId
-    );
-
-    if (damageCommanderIndex > -1) {
-      const damageCommander = player?.commanderDamage;
-
-      damageCommander[damageCommanderIndex] = {
-        ...damageCommander[damageCommanderIndex],
-        damage: damageCommander[damageCommanderIndex]?.damage - 1,
-      };
-
-      minusLife();
-      updatePlayers({
-        ...player,
-        commanderDamage: damageCommander,
-      });
-    }
-  };
+  console.log(showTemp)
 
   useEffect(() => {
-    updatePlayers(player);
-  }, [player]);
+    if (showTemp?.timestamp && showTemp?.playerId == playerId) {
+      setLayerView(layers?.[showTemp.layer]);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     checkDeath(playerNumber, deathPlayer);
-  //   }, 2000);
-  // }, [player]);
+      const checkTimestamp = () => {
+        if (new Date().getTime() > showTemp.timestamp) {
+          setLayerView(layers?.life);
+          cleanShowTemp();
+        }
+      };
+
+      intervalRef.current = setInterval(checkTimestamp, 100);
+
+      return () => {
+        clearInterval(intervalRef.current!);
+      };
+    }
+  }, [showTemp, cleanShowTemp]);
 
   return {
-    playerNumber,
-    addLife,
-    minusLife,
-    pressAdd,
-    dropAdd,
-    pressMinus,
-    dropMinus,
     layerView,
     setLayerView,
-    addCommanderDamage,
-    minusCommanderDamage,
-    deathByCommander,
-    playerDeath,
-    revivePlayer,
   };
 };

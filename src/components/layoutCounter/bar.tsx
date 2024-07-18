@@ -2,12 +2,12 @@ import { Stack } from "@mui/material";
 import { FaUserFriends } from "react-icons/fa";
 import { FaRepeat } from "react-icons/fa6";
 import { MdMenu } from "react-icons/md";
-import { useCounterLife } from "../../storeds/useThemeMode/useCounterLife";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { useNavigate } from "react-router-dom";
 
 export const Bar = () => {
   const navigate = useNavigate();
-  const { initGame, players } = useCounterLife();
+  const { initGame, players } = useGamePlayers();
   return (
     <>
       <>

@@ -1,11 +1,11 @@
 import { Stack, Typography } from "@mui/material";
 import { FaUser } from "react-icons/fa";
-import { useCounterLife } from "../../storeds/useThemeMode/useCounterLife";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { useNavigate } from "react-router-dom";
 
 export default function PagePlayers() {
   const navigate = useNavigate();
-  const { initGame } = useCounterLife();
+  const { initGame } = useGamePlayers();
 
   return (
     <>
