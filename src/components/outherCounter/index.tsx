@@ -14,7 +14,7 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
 
   const toggleControl = (value: Layer) => {
     if (showTemp?.layer != value) {
-      setShowTemp(playerId, "infect");
+      setShowTemp(playerId, value);
     }
   };
 
@@ -27,12 +27,16 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
       color={"white"}
       padding={1}
     >
-      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}>
+      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}
+              onClick={() => {
+                toggleControl("commanderTax");
+                updatePlayers({ ...player, commanderTax: player?.commanderTax + 2 });
+              }}>
         <LeftRight
           direction={direction}
           Value={
             <Typography component={"span"} variant="caption">
-              2
+              {player?.commanderTax}
             </Typography>
           }
           Icon={<BsShieldFillPlus size={22} />}
