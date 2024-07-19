@@ -91,7 +91,15 @@ export const PageEditPlayer = () => {
                     })
                   }
                 >
-                  <img src={mana?.plains} alt="white" width={"30px"} />
+                  <Box
+                    sx={{ border: form?.color == "plains" ? "2px solid black" : undefined }}
+                    height={"34px"}
+                    width={"34px"}
+                    borderRadius={50}
+                  >
+                    <img src={mana?.plains} alt="white" width={"30px"} />
+                  </Box>
+                  
                 </IconButton>
                 <IconButton
                   onClick={() =>
@@ -103,7 +111,7 @@ export const PageEditPlayer = () => {
                   }
                 >
                   <Box
-                    sx={{ border: "2px solid white" }}
+                    sx={{ border: form?.color == "island" ? "2px solid black" : undefined }}
                     height={"34px"}
                     width={"34px"}
                     borderRadius={50}
@@ -120,7 +128,14 @@ export const PageEditPlayer = () => {
                     })
                   }
                 >
+                  <Box
+                    sx={{ border: form?.color == "swamp" ? "2px solid black" : undefined }}
+                    height={"34px"}
+                    width={"34px"}
+                    borderRadius={50}
+                  >
                   <img src={mana?.swamp} alt="Swamp" width={"30px"} />
+                  </Box>
                 </IconButton>
                 <IconButton
                   onClick={() =>
@@ -131,7 +146,14 @@ export const PageEditPlayer = () => {
                     })
                   }
                 >
+                   <Box
+                    sx={{ border: form?.color == "mountain" ? "2px solid black" : undefined }}
+                    height={"34px"}
+                    width={"34px"}
+                    borderRadius={50}
+                  >
                   <img src={mana?.mountain} alt="mountain" width={"30px"} />
+                  </Box>
                 </IconButton>
                 <IconButton
                   onClick={() =>
@@ -142,7 +164,14 @@ export const PageEditPlayer = () => {
                     })
                   }
                 >
+                  <Box
+                    sx={{ border: form?.color == "forest" ? "2px solid black" : undefined }}
+                    height={"34px"}
+                    width={"34px"}
+                    borderRadius={50}
+                  >
                   <img src={mana?.forest} alt="forest" width={"30px"} />
+                  </Box>
                 </IconButton>
               </Stack>
             </Grid>
@@ -153,7 +182,7 @@ export const PageEditPlayer = () => {
                     {Object.values(bgMagic[form.color])?.map((item) => (
                       <Box
                         border={
-                          form?.bgMagic == item ? "2px solid blue" : undefined
+                          form?.bgMagic == item ? "2px solid black" : undefined
                         }
                         width={"80px"}
                         height={"80px"}
