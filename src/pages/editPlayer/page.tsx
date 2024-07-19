@@ -114,7 +114,7 @@ export const PageEditPlayer = () => {
                         bgcolor={value?.color}
                       >
                         {value?.icon ? (
-                          <img src={value?.icon} alt="white" width={"30px"} />
+                          <img src={value?.icon} alt={value?.color} width={"30px"} />
                         ) : null}
                       </Box>
                     </Stack>
@@ -125,7 +125,6 @@ export const PageEditPlayer = () => {
             <Stack   flexGrow={1}>
               <Stack flexDirection={"row"} gap={2}>
                 {playerConfig?.color &&
-                playerConfig.color != "waste" &&
                 mana[playerConfig.color]?.icon ? (
                   <>
                     {Object?.values(bgMagic[playerConfig.color])?.map(

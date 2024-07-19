@@ -3,7 +3,7 @@ import Black from "../assets/black_mana.png";
 import Blue from "../assets/blue_mana.png";
 import Green from "../assets/green_mana.png";
 import Red from "../assets/red_mana.png";
-import Colorless from "../assets/colorless-symbol.png";
+import Colorless from "../assets/waste.webp";
 
 export const mana = {
   plains: {
