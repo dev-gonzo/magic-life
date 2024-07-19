@@ -1,8 +1,8 @@
 import { Stack } from "@mui/material";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
+import { CommanderDamage } from "../commanderDamage";
 import { Props } from "./types";
 import { useCouterIndividual } from "./useCouterIndividual";
-import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
-import { CounterDamage } from "../commanderDamage/counterDamage";
 
 export const CounterIndividual = ({ playerId }: Props) => {
   const { layerView } = useCouterIndividual(playerId);
@@ -12,7 +12,25 @@ export const CounterIndividual = ({ playerId }: Props) => {
   if (player?.viewCommanderDamage) {
     return (
       <>
-        <CounterDamage playerId={playerId} />
+        <Stack
+          bgcolor={"red"}
+          flexGrow={1}
+          alignItems={"center"}
+          borderRadius={3}
+        >
+          <Stack>Damage Commander</Stack>
+          <Stack
+            flexGrow={1}
+            justifyContent={"center"}
+            alignItems={"center"}
+            flexDirection={"row"}
+            flexWrap={"wrap"}
+            gap={1}
+          >
+            <CommanderDamage playerId={playerId} />
+          </Stack>
+          <Stack>{layerView?.footer}</Stack>
+        </Stack>
       </>
     );
   }

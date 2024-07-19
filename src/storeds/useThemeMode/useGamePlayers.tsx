@@ -18,7 +18,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
           newPlayers.push({
             player: i + 1,
             life: 40,
-            commanderDamage: [{ player: 2, commander: 1, damage: 10 }],
+            commanderDamage: [],
             commanderTax: 0,
             infect: 0,
             rad: 0,
@@ -34,7 +34,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
           newPlayers.push({
             player: i + 1,
             life: 40,
-            commanderDamage: [{ player: 2, commander: 1, damage: 10 }],
+            commanderDamage: [],
             commanderTax: 0,
             infect: 0,
             rad: 0,

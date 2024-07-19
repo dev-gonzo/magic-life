@@ -1,58 +1,64 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-import { FaMinusCircle } from "react-icons/fa";
-import { FaPlusCircle } from "react-icons/fa";
+import { IconButton, Stack, Typography } from "@mui/material";
+import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
-import { Props } from "./types";
 
-export const CounterDamage = ({ playerId }: Props) => {
-  const { players, getPlayer, subCommanderDamage, addCommanderDamage } =
-    useGamePlayers();
-  const player = getPlayer(playerId);
+export const CounterDamage = ({
+  playerId,
+  playerCommander,
+  commanderId,
+  damage,
+}: // eslint-disable-next-line @typescript-eslint/no-explicit-any
+any) => {
+  const { subCommanderDamage, addCommanderDamage } = useGamePlayers();
 
   return (
     <>
-      {players?.map((item) => {
-        const commander = player?.commanderDamage?.find(
-          (element) => element?.player == item?.player
-        );
-        return (
-          <>
-            <Stack
-              justifyContent={"center"}
-              alignItems={"center"}
-              flexDirection={"row"}
+      <>
+        <Stack
+          justifyContent={"center"}
+          alignItems={"center"}
+          flexDirection={"row"}
+          gap={0.5}
+          bgcolor={"blue"}
+        >
+          <Stack>
+            <IconButton
+              aria-label="sub"
+              size="small"
+              onClick={() =>
+                subCommanderDamage(playerId, playerCommander, commanderId)
+              }
+              sx={{ color: "white" }}
             >
-              <Box>
-                <Button
-                  onClick={() => subCommanderDamage(playerId, item?.player, 1)}
-                  sx={{ color: "white" }}
-                >
-                  <FaMinusCircle size={22} />
-                </Button>
-              </Box>
-              <Box>
-                <Typography
-                  variant="h3"
-                  color={player?.life ? "white" : "red"}
-                  fontWeight={"bold"}
-                  fontFamily={"monospace"}
-                  sx={{ textShadow: "2px 2px black" }}
-                >
-                  {commander?.damage ?? 0}
-                </Typography>
-              </Box>
-              <Box>
-                <Button
-                  onClick={() => addCommanderDamage(playerId, item?.player, 1)}
-                  sx={{ color: "white", textShadow: "2px 2px black" }}
-                >
-                  <FaPlusCircle size={22} />
-                </Button>
-              </Box>
-            </Stack>
-          </>
-        );
-      })}
+              <FaMinusCircle size={12} />
+            </IconButton>
+          </Stack>
+          <Stack>
+            <Typography
+              variant="h6"
+              color={"white"}
+              fontWeight={"bold"}
+              fontFamily={"monospace"}
+              sx={{ textShadow: "2px 2px black" }}
+              component={"span"}
+            >
+              {damage}
+            </Typography>
+          </Stack>
+          <Stack>
+            <IconButton
+              aria-label="add"
+              size="small"
+              onClick={() =>
+                addCommanderDamage(playerId, playerCommander, commanderId)
+              }
+              sx={{ color: "white" }}
+            >
+              <FaPlusCircle size={12} />
+            </IconButton>
+          </Stack>
+        </Stack>
+      </>
     </>
   );
 };

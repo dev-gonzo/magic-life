@@ -58,7 +58,7 @@ export const CounterLife = ({ playerId }: Props) => {
           </Button>
         </Box>
       </Stack>
-      <Box>
+      <Box marginTop={0.5}>
         <CommanderDamage playerId={playerId} />
       </Box>
     </>
