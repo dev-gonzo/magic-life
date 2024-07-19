@@ -4,17 +4,42 @@ import { CommanderDamage } from "../commanderDamage";
 import { Props } from "./types";
 import { useCouterIndividual } from "./useCouterIndividual";
 import { TitleCard } from "../titleCard";
+import { Death } from "../death";
+import { FooterDeath } from "../footerDeath";
 
 export const CounterIndividual = ({ playerId }: Props) => {
   const { layerView } = useCouterIndividual(playerId);
   const { getPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
 
+  if (player?.loses && !player?.immmortal) {
+    return (
+      <>
+        <Stack flexGrow={1} alignItems={"center"} borderRadius={3}>
+          <TitleCard playerId={playerId} title={"Death"} />
+          <Stack
+            flexGrow={1}
+            justifyContent={"center"}
+            alignItems={"center"}
+            flexDirection={"row"}
+            flexWrap={"wrap"}
+            gap={1}
+          >
+            <Death />
+          </Stack>
+          <Stack>
+            <FooterDeath playerId={playerId} />
+          </Stack>
+        </Stack>
+      </>
+    );
+  }
+
   if (player?.viewCommanderDamage) {
     return (
       <>
         <Stack flexGrow={1} alignItems={"center"} borderRadius={3}>
-          <Stack>Damage Commander</Stack>
+          <TitleCard playerId={playerId} title={"Damage Commander"} />
           <Stack
             flexGrow={1}
             justifyContent={"center"}

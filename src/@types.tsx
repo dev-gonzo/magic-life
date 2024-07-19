@@ -20,6 +20,8 @@ export type InfoPlayer = {
   citysBlessing: boolean;
   monarch: boolean;
   viewCommanderDamage: boolean;
+  loses: boolean;
+  immmortal: boolean;
 };
 
 export type ConfigPlayer = {
@@ -30,7 +32,13 @@ export type ConfigPlayer = {
   bgMagic?: string;
 };
 
-export type ColorMagic = "plains" | "island" | "swamp" | "mountain" | "forest" | "waste";
+export type ColorMagic =
+  | "plains"
+  | "island"
+  | "swamp"
+  | "mountain"
+  | "forest"
+  | "waste";
 
 export type DamageCommander = {
   player: number;

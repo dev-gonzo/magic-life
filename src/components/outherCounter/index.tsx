@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import { BsShieldFillPlus } from "react-icons/bs";
 import { FaRadiation } from "react-icons/fa6";
-import { GiRollingDices } from "react-icons/gi";
+import { GiPirateGrave } from "react-icons/gi";
 import { Layer } from "../../@types";
 import Phyrexia from "../../assets/phyrexa.svg";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
@@ -92,8 +92,23 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
         />
       </Stack>
 
-      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}>
-        <GiRollingDices size={22} />
+      <Stack
+        flexDirection={"row"}
+        alignItems={"center"}
+        gap={0.5}
+        onClick={() => {
+          updatePlayers({
+            ...player,
+            loses: true,
+            immmortal: false,
+          });
+        }}
+      >
+        <LeftRight
+          direction={direction}
+          Value={<Typography component={"span"} variant="caption"></Typography>}
+          Icon={<GiPirateGrave size={22} />}
+        />
       </Stack>
     </Stack>
   );

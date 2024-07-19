@@ -56,6 +56,8 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
             citysBlessing: false,
             monarch: false,
             viewCommanderDamage: false,
+            loses: false,
+            immmortal: false,
           });
         }
       } else if (!playersNumber && !oldPlayersQtd) {
@@ -72,6 +74,8 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
             citysBlessing: false,
             monarch: false,
             viewCommanderDamage: false,
+            loses: false,
+            immmortal: false,
           });
         }
       } else {
