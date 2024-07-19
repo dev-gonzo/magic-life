@@ -13,7 +13,7 @@ import { OutherCounter } from "../outherCounter";
 export const dataLayers = (playerId: number) => {
   return {
     life: {
-      title: `Player ${playerId}`,
+      title: undefined,
       main: <CounterLife playerId={playerId} />,
       footer: <FooterCommander playerId={playerId}/>,
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,

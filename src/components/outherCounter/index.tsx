@@ -27,11 +27,15 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
       color={"white"}
       padding={1}
     >
-      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}
-              onClick={() => {
-                toggleControl("commanderTax");
-                updatePlayers({ ...player, commanderTax: player?.commanderTax + 2 });
-              }}>
+      <Stack
+        flexDirection={"row"}
+        alignItems={"center"}
+        gap={0.5}
+        onClick={() => {
+          toggleControl("commanderTax");
+          updatePlayers({ ...player, commanderTax: player?.commanderTax + 2 });
+        }}
+      >
         <LeftRight
           direction={direction}
           Value={
@@ -49,7 +53,11 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
         gap={0.5}
         onClick={() => {
           toggleControl("infect");
-          updatePlayers({ ...player, infect: player?.infect + 1 });
+          updatePlayers({
+            ...player,
+            infect: player?.infect + 1,
+            life: player?.life - 1,
+          });
         }}
       >
         <LeftRight
@@ -64,11 +72,15 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
           }
         />
       </Stack>
-      <Stack flexDirection={"row"} alignItems={"center"} gap={0.5}
-              onClick={() => {
-                toggleControl("rad");
-                updatePlayers({ ...player, rad: player?.rad + 1 });
-              }}>
+      <Stack
+        flexDirection={"row"}
+        alignItems={"center"}
+        gap={0.5}
+        onClick={() => {
+          toggleControl("rad");
+          updatePlayers({ ...player, rad: player?.rad + 1 });
+        }}
+      >
         <LeftRight
           direction={direction}
           Value={
