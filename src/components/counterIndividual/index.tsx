@@ -38,7 +38,7 @@ export const CounterIndividual = ({ playerId }: Props) => {
           {layerView?.sideLeft}
         </Stack>
         <Stack flexGrow={1} alignItems={"center"}>
-          <TitleCard title={layerView?.title} playerId={playerId} />
+          <TitleCard playerId={playerId} />
           <Stack flexGrow={1} justifyContent={"center"} alignItems={"center"}>
             {layerView?.main}
           </Stack>

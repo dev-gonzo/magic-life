@@ -3,7 +3,7 @@ import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { Props } from "./types";
 
 export const CommanderDamage = ({ playerId }: Props) => {
-  const { getPlayer, addCommanderDamage } = useGamePlayers();
+  const { getPlayer, addCommanderDamage, getConfigPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
 
   return (
@@ -12,6 +12,7 @@ export const CommanderDamage = ({ playerId }: Props) => {
       gap={0.5}
       flexWrap={"wrap"}
       justifyContent={"space-evenly"}
+      key={`commander-damage2-${Math.random()}`}
     >
       {player?.commanderDamage?.map((item) => (
         <Stack
@@ -23,6 +24,11 @@ export const CommanderDamage = ({ playerId }: Props) => {
           justifyContent={"center"}
           onClick={() => {
             addCommanderDamage(playerId, item?.player, item?.commander);
+          }}
+          sx={{
+            backgroundImage: `url(${getConfigPlayer(item?.player)?.bgMagic})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
           <Typography

@@ -10,6 +10,8 @@ export const CounterDamage = ({
 }: // eslint-disable-next-line @typescript-eslint/no-explicit-any
 any) => {
   const { subCommanderDamage, addCommanderDamage } = useGamePlayers();
+  const { getConfigPlayer } = useGamePlayers();
+  const player = getConfigPlayer(playerCommander);
 
   return (
     <>
@@ -19,7 +21,11 @@ any) => {
           alignItems={"center"}
           flexDirection={"row"}
           gap={0.5}
-          bgcolor={"blue"}
+          sx={{
+            backgroundImage: `url(${player?.bgMagic})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
           <Stack>
             <IconButton

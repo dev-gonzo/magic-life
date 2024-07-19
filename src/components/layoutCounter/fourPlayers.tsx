@@ -1,8 +1,15 @@
 import { Stack } from "@mui/material";
 import { CounterIndividual } from "../counterIndividual";
 import { Bar } from "./bar";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 
 export const FourPlayers = () => {
+  const { getConfigPlayer } = useGamePlayers();
+  const player1 = getConfigPlayer(1);
+  const player2 = getConfigPlayer(2);
+  const player3 = getConfigPlayer(3);
+  const player4 = getConfigPlayer(4);
+
   return (
     <>
       <Stack
@@ -21,7 +28,7 @@ export const FourPlayers = () => {
             flexGrow={1}
             borderRadius={5}
             sx={{
-              backgroundImage: `url(../../assets/dmu-277-plains.jpg)`,
+              backgroundImage: `url(${player1?.bgMagic})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               transform: "rotate(180deg)",
@@ -33,7 +40,7 @@ export const FourPlayers = () => {
             <Stack
               width={"100%"}
               height={"100%"}
-              sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+              sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
             >
               <CounterIndividual playerId={1} />
             </Stack>
@@ -43,7 +50,7 @@ export const FourPlayers = () => {
             flexGrow={1}
             borderRadius={5}
             sx={{
-              backgroundImage: `url(../../assets/dmu-278-island.jpg)`,
+              backgroundImage: `url(${player2?.bgMagic})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -53,7 +60,7 @@ export const FourPlayers = () => {
             <Stack
               width={"100%"}
               height={"100%"}
-              sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+              sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
             >
               <CounterIndividual playerId={2} />
             </Stack>
@@ -70,7 +77,7 @@ export const FourPlayers = () => {
             flexGrow={1}
             borderRadius={5}
             sx={{
-              backgroundImage: `url(../../assets/dmu-279-swamp.jpg)`,
+              backgroundImage: `url(${player3?.bgMagic})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               transform: "rotate(180deg)",
@@ -81,7 +88,7 @@ export const FourPlayers = () => {
             <Stack
               width={"100%"}
               height={"100%"}
-              sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+              sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
             >
               <CounterIndividual playerId={3} />
             </Stack>
@@ -90,7 +97,7 @@ export const FourPlayers = () => {
             flexGrow={1}
             borderRadius={5}
             sx={{
-              backgroundImage: `url(../../assets/dmu-280-mountain.jpg)`,
+              backgroundImage: `url(${player4?.bgMagic})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -100,7 +107,7 @@ export const FourPlayers = () => {
             <Stack
               width={"100%"}
               height={"100%"}
-              sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+              sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
             >
               <CounterIndividual playerId={4} />
             </Stack>
