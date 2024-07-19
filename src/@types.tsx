@@ -22,6 +22,14 @@ export type InfoPlayer = {
   viewCommanderDamage: boolean;
 };
 
+export type ConfigPlayer = {
+  player: number;
+  playerName: string;
+  parther: boolean;
+  color: string;
+  bgMagic: string;
+};
+
 export type DamageCommander = {
   player: number;
   commander: number;

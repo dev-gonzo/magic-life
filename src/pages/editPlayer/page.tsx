@@ -48,7 +48,7 @@ export const PageEditPlayer = () => {
                 Player 1
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={8}>
               <TextField
                 name="playerName"
                 value={form?.name}
@@ -64,7 +64,7 @@ export const PageEditPlayer = () => {
                 fullWidth
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={4}>
               <FormGroup>
                 <FormControlLabel
                   control={
