@@ -26,9 +26,11 @@ export type ConfigPlayer = {
   player: number;
   playerName: string;
   parther: boolean;
-  color?: "plains" | "island" | "swamp" | "mountain" | "forest";
+  color?: ColorMagic;
   bgMagic?: string;
 };
+
+export type ColorMagic = "plains" | "island" | "swamp" | "mountain" | "forest" | "waste";
 
 export type DamageCommander = {
   player: number;

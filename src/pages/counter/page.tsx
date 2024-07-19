@@ -6,7 +6,7 @@ export default function PageCounter() {
     <>
       <Stack
         height={"100vh"}
-        bgcolor={"#1F2A38"}
+        bgcolor={"#13111A"}
         flexDirection={"row"}
         flexWrap={"wrap"}
       >
