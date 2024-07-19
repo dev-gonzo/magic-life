@@ -3,18 +3,17 @@ import {
   Checkbox,
   FormControlLabel,
   FormGroup,
-  Grid,
   IconButton,
   Stack,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import { FaCircleXmark } from "react-icons/fa6";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ColorMagic } from "../../@types";
 import { bgMagic } from "../../data/background";
 import { mana } from "../../data/mana";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
-import { ColorMagic } from "../../@types";
 
 export const PageEditPlayer = () => {
   const navigate = useNavigate();
@@ -32,13 +31,13 @@ export const PageEditPlayer = () => {
           bgcolor={"#34495E"}
           justifyContent={"space-between"}
         >
-          <Grid container padding={2} spacing={1} flexGrow={1} display={"flex"}>
-            <Grid item xs={12}>
+          <Stack  padding={2} flexGrow={1} display={"flex"} gap={1}>
+            <Stack>
               <Typography variant="h5" fontWeight={"bold"} textAlign={"center"}>
                 Player {playerId}
               </Typography>
-            </Grid>
-            <Grid item xs={8}>
+            </Stack>
+            <Stack flexDirection={"row"} gap={2} >
               <TextField
                 name="playerName"
                 value={playerConfig?.playerName}
@@ -52,10 +51,9 @@ export const PageEditPlayer = () => {
                 variant="standard"
                 size="small"
                 placeholder="Player name"
-                fullWidth
+                sx={{width: "70%"}}
               />
-            </Grid>
-            <Grid item xs={4}>
+          
               <FormGroup>
                 <FormControlLabel
                   control={
@@ -74,13 +72,13 @@ export const PageEditPlayer = () => {
                   label="Commander Parther"
                 />
               </FormGroup>
-            </Grid>
-            <Grid item xs={12}>
+            </Stack>
+            <Stack  paddingBottom={2}>
               <Stack
                 flexDirection={"row"}
                 flexWrap={"wrap"}
                 height={"38px"}
-                justifyItems={"center"}
+                
               >
                 {Object.entries(mana).map(([key, value]) => (
                   <IconButton
@@ -123,8 +121,8 @@ export const PageEditPlayer = () => {
                   </IconButton>
                 ))}
               </Stack>
-            </Grid>
-            <Grid item xs={12} flexGrow={1}>
+            </Stack>
+            <Stack   flexGrow={1}>
               <Stack flexDirection={"row"} gap={2}>
                 {playerConfig?.color &&
                 playerConfig.color != "waste" &&
@@ -134,8 +132,8 @@ export const PageEditPlayer = () => {
                       (item) => (
                         <Box
                           border={
-                            playerConfig?.bgMagic == item
-                              ? "2px solid #13111A"
+                            playerConfig?.bgMagic == 
+                              item ? "2px solid #13111A"
                               : undefined
                           }
                           borderRadius={3}
@@ -159,8 +157,8 @@ export const PageEditPlayer = () => {
                   </>
                 ) : null}
               </Stack>
-            </Grid>
-          </Grid>
+            </Stack>
+          </Stack>
           <IconButton onClick={() => navigate("/counter")}>
             <FaCircleXmark size={22} color="black" />
           </IconButton>
