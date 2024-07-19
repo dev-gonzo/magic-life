@@ -9,29 +9,18 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { mana } from "../../data/mana";
-import { bgMagic } from "../../data/background";
-import { useEffect, useState } from "react";
 import { FaCircleXmark } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { bgMagic } from "../../data/background";
+import { mana } from "../../data/mana";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 
 export const PageEditPlayer = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState<{
-    name: string;
-    parther: boolean;
-    color: undefined | "plains" | "island" | "swamp" | "mountain" | "forest";
-    bgMagic: undefined | string;
-  }>({
-    name: "",
-    parther: false,
-    color: undefined,
-    bgMagic: undefined,
-  });
-
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
+  const location = useLocation();
+  const playerId = location?.state?.playerId;
+  const { getConfigPlayer, saveConfigPlayers } = useGamePlayers();
+  const playerConfig = getConfigPlayer(playerId);
 
   return (
     <>
@@ -45,17 +34,18 @@ export const PageEditPlayer = () => {
           <Grid container padding={2} spacing={1}>
             <Grid item xs={12}>
               <Typography variant="h5" fontWeight={"bold"} textAlign={"center"}>
-                Player 1
+                Player {playerId}
               </Typography>
             </Grid>
             <Grid item xs={8}>
               <TextField
                 name="playerName"
-                value={form?.name}
+                value={playerConfig?.playerName}
                 onChange={(e) => {
-                  setForm({
-                    ...form,
-                    name: e?.target?.value,
+                  saveConfigPlayers({
+                    ...playerConfig,
+                    player: playerId,
+                    playerName: e?.target?.value,
                   });
                 }}
                 variant="standard"
@@ -69,10 +59,14 @@ export const PageEditPlayer = () => {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={form?.parther}
-                      value={form?.parther}
+                      checked={playerConfig?.parther}
+                      value={playerConfig?.parther}
                       onChange={() => {
-                        setForm({ ...form, parther: !form?.parther });
+                        saveConfigPlayers({
+                          ...playerConfig,
+                          player: playerId,
+                          parther: !playerConfig?.parther,
+                        });
                       }}
                     />
                   }
@@ -84,34 +78,47 @@ export const PageEditPlayer = () => {
               <Stack flexDirection={"row"}>
                 <IconButton
                   onClick={() =>
-                    setForm({
-                      ...form,
-                      color: form?.color == "plains" ? undefined : "plains",
+                    saveConfigPlayers({
+                      ...playerConfig,
+                      player: playerId,
+                      color:
+                        playerConfig?.color == "plains" ? undefined : "plains",
                       bgMagic: undefined,
                     })
                   }
                 >
                   <Box
-                    sx={{ border: form?.color == "plains" ? "2px solid black" : undefined }}
+                    sx={{
+                      border:
+                        playerConfig?.color == "plains"
+                          ? "2px solid black"
+                          : undefined,
+                    }}
                     height={"34px"}
                     width={"34px"}
                     borderRadius={50}
                   >
                     <img src={mana?.plains} alt="white" width={"30px"} />
                   </Box>
-                  
                 </IconButton>
                 <IconButton
                   onClick={() =>
-                    setForm({
-                      ...form,
-                      color: form?.color == "island" ? undefined : "island",
+                    saveConfigPlayers({
+                      ...playerConfig,
+                      player: playerId,
+                      color:
+                        playerConfig?.color == "island" ? undefined : "island",
                       bgMagic: undefined,
                     })
                   }
                 >
                   <Box
-                    sx={{ border: form?.color == "island" ? "2px solid black" : undefined }}
+                    sx={{
+                      border:
+                        playerConfig?.color == "island"
+                          ? "2px solid black"
+                          : undefined,
+                    }}
                     height={"34px"}
                     width={"34px"}
                     borderRadius={50}
@@ -121,68 +128,93 @@ export const PageEditPlayer = () => {
                 </IconButton>
                 <IconButton
                   onClick={() =>
-                    setForm({
-                      ...form,
-                      color: form?.color == "swamp" ? undefined : "swamp",
+                    saveConfigPlayers({
+                      ...playerConfig,
+                      player: playerId,
+                      color:
+                        playerConfig?.color == "swamp" ? undefined : "swamp",
                       bgMagic: undefined,
                     })
                   }
                 >
                   <Box
-                    sx={{ border: form?.color == "swamp" ? "2px solid black" : undefined }}
+                    sx={{
+                      border:
+                        playerConfig?.color == "swamp"
+                          ? "2px solid black"
+                          : undefined,
+                    }}
                     height={"34px"}
                     width={"34px"}
                     borderRadius={50}
                   >
-                  <img src={mana?.swamp} alt="Swamp" width={"30px"} />
+                    <img src={mana?.swamp} alt="Swamp" width={"30px"} />
                   </Box>
                 </IconButton>
                 <IconButton
                   onClick={() =>
-                    setForm({
-                      ...form,
-                      color: form?.color == "mountain" ? undefined : "mountain",
-                      bgMagic: undefined,
-                    })
-                  }
-                >
-                   <Box
-                    sx={{ border: form?.color == "mountain" ? "2px solid black" : undefined }}
-                    height={"34px"}
-                    width={"34px"}
-                    borderRadius={50}
-                  >
-                  <img src={mana?.mountain} alt="mountain" width={"30px"} />
-                  </Box>
-                </IconButton>
-                <IconButton
-                  onClick={() =>
-                    setForm({
-                      ...form,
-                      color: form?.color == "forest" ? undefined : "forest",
+                    saveConfigPlayers({
+                      ...playerConfig,
+                      player: playerId,
+                      color:
+                        playerConfig?.color == "mountain"
+                          ? undefined
+                          : "mountain",
                       bgMagic: undefined,
                     })
                   }
                 >
                   <Box
-                    sx={{ border: form?.color == "forest" ? "2px solid black" : undefined }}
+                    sx={{
+                      border:
+                        playerConfig?.color == "mountain"
+                          ? "2px solid black"
+                          : undefined,
+                    }}
                     height={"34px"}
                     width={"34px"}
                     borderRadius={50}
                   >
-                  <img src={mana?.forest} alt="forest" width={"30px"} />
+                    <img src={mana?.mountain} alt="mountain" width={"30px"} />
+                  </Box>
+                </IconButton>
+                <IconButton
+                  onClick={() =>
+                    saveConfigPlayers({
+                      ...playerConfig,
+                      player: playerId,
+                      color:
+                        playerConfig?.color == "forest" ? undefined : "forest",
+                      bgMagic: undefined,
+                    })
+                  }
+                >
+                  <Box
+                    sx={{
+                      border:
+                        playerConfig?.color == "forest"
+                          ? "2px solid black"
+                          : undefined,
+                    }}
+                    height={"34px"}
+                    width={"34px"}
+                    borderRadius={50}
+                  >
+                    <img src={mana?.forest} alt="forest" width={"30px"} />
                   </Box>
                 </IconButton>
               </Stack>
             </Grid>
             <Grid item xs={12}>
               <Stack flexDirection={"row"} gap={2}>
-                {form?.color ? (
+                {playerConfig?.color ? (
                   <>
-                    {Object.values(bgMagic[form.color])?.map((item) => (
+                    {Object.values(bgMagic[playerConfig.color])?.map((item) => (
                       <Box
                         border={
-                          form?.bgMagic == item ? "2px solid black" : undefined
+                          playerConfig?.bgMagic == item
+                            ? "2px solid black"
+                            : undefined
                         }
                         width={"80px"}
                         height={"80px"}
@@ -193,8 +225,9 @@ export const PageEditPlayer = () => {
                           backgroundPosition: "center",
                         }}
                         onClick={() => {
-                          setForm({
-                            ...form,
+                          saveConfigPlayers({
+                            ...playerConfig,
+                            player: playerId,
                             bgMagic: item,
                           });
                         }}

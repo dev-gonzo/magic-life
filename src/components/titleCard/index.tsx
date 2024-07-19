@@ -2,7 +2,7 @@ import { IconButton, Stack, Typography } from "@mui/material";
 import { FaUserEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-export const TitleCard = ({ title }: { title: string }) => {
+export const TitleCard = ({ title, playerId }: { title: string, playerId: number}) => {
   const navigate = useNavigate();
   return (
     <>
@@ -20,7 +20,7 @@ export const TitleCard = ({ title }: { title: string }) => {
         <IconButton
           size="small"
           color="inherit"
-          onClick={() => navigate("/edit-player")}
+          onClick={() => navigate("/edit-player", { state: { playerId: playerId } })}
         >
           <FaUserEdit color="white" />
         </IconButton>
