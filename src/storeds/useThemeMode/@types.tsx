@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { InfoPlayer, Layer } from "../../@types";
+import { ConfigPlayer, InfoPlayer, Layer } from "../../@types";
 
 export type Props = {
   themeMode: "light" | "dark";
@@ -11,12 +11,16 @@ export type Props = {
 
 export type PropsInfoPlayers = {
   players: InfoPlayer[];
+  configPlayers: ConfigPlayer[];
   showTemp?: {
     layer: Layer;
     icon: ReactNode;
     playerId: number;
     timestamp: number;
   };
+
+  saveConfigPlayers: (configPlayer: ConfigPlayer) => void;
+  getConfigPlayer: (playerId: number) => ConfigPlayer;
 
   initGame: (playersNumber?: number) => void;
   updatePlayers: (infoPlayer: InfoPlayer) => void;

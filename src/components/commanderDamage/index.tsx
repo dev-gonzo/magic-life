@@ -8,13 +8,14 @@ export const CommanderDamage = ({ playerId }: Props) => {
 
   return (
     <>
-      {listCommander?.map((item) => (
-        <Stack borderRadius={2} overflow={"hidden"}>
+      {listCommander?.map((item, index) => (
+        <Stack borderRadius={2} overflow={"hidden"} key={`commander-damage-${index}`}>
           <CounterDamage
             playerId={playerId}
             playerCommander={item?.playerCommander}
             commanderId={1}
             damage={item?.damageCommander1}
+            key={`commander-damage-${index}-1`}
           />
           {item?.damageCommander2 !== undefined ? (
             <CounterDamage
@@ -22,6 +23,7 @@ export const CommanderDamage = ({ playerId }: Props) => {
               playerCommander={item?.playerCommander}
               commanderId={2}
               damage={item?.damageCommander2}
+              key={`commander-damage-${index}=2`}
             />
           ) : null}
         </Stack>

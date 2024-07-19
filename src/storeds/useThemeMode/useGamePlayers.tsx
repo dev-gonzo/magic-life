@@ -1,12 +1,41 @@
 import { create } from "zustand";
 import { getStoragePlayer } from "../../helpers/getStoragePlayers";
 import { PropsInfoPlayers } from "./@types";
-import { InfoPlayer } from "../../@types";
+import { ConfigPlayer, InfoPlayer } from "../../@types";
 import { RiShieldFlashFill } from "react-icons/ri";
+import { getStorageConfigPlayer } from "../../helpers/getStorageConfigPlayers";
 
 export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
   players: getStoragePlayer(),
+  configPlayers: getStorageConfigPlayer(),
   showTemp: undefined,
+
+  saveConfigPlayers: (configPlayer) =>
+    set((state) => {
+      const newConfigPlayers = state?.configPlayers;
+
+      const indexPlayer = newConfigPlayers?.findIndex(
+        (item) => item?.player == configPlayer?.player
+      );
+
+      if (indexPlayer > -1) {
+        newConfigPlayers[indexPlayer] = configPlayer;
+
+        localStorage.setItem("configPlayers", JSON.stringify(newConfigPlayers));
+        return { configPlayers: newConfigPlayers };
+      }
+
+      newConfigPlayers?.push(configPlayer);
+
+      localStorage.setItem("configPlayers", JSON.stringify(newConfigPlayers));
+      return { configPlayers: newConfigPlayers };
+    }),
+
+  getConfigPlayer: (playerId) => {
+    return get().configPlayers?.find(
+      (item) => item?.player == playerId
+    ) as ConfigPlayer;
+  },
 
   initGame: (playersNumber) =>
     set((state) => {
