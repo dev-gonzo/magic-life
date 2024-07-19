@@ -17,7 +17,7 @@ export const PageEditPlayer = () => {
   const [form, setForm] = useState<{
     name: string;
     parther: boolean;
-    color: undefined | "plains" | "island";
+    color: undefined | "plains" | "island" | "swamp" | "mountain" | "forest";
     bgMagic: undefined | string;
   }>({
     name: "",
@@ -96,14 +96,38 @@ export const PageEditPlayer = () => {
                 >
                   <img src={mana?.island} alt="blue" width={"30px"} />
                 </IconButton>
-                <IconButton>
-                  <img src={mana?.swamp} alt="white" width={"30px"} />
+                <IconButton
+                  onClick={() =>
+                    setForm({
+                      ...form,
+                      color: form?.color == "swamp" ? undefined : "swamp",
+                      bgMagic: undefined,
+                    })
+                  }
+                >
+                  <img src={mana?.swamp} alt="Swamp" width={"30px"} />
                 </IconButton>
-                <IconButton>
-                  <img src={mana?.mountain} alt="white" width={"30px"} />
+                <IconButton
+                  onClick={() =>
+                    setForm({
+                      ...form,
+                      color: form?.color == "mountain" ? undefined : "mountain",
+                      bgMagic: undefined,
+                    })
+                  }
+                >
+                  <img src={mana?.mountain} alt="mountain" width={"30px"} />
                 </IconButton>
-                <IconButton>
-                  <img src={mana?.forest} alt="white" width={"30px"} />
+                <IconButton
+                  onClick={() =>
+                    setForm({
+                      ...form,
+                      color: form?.color == "forest" ? undefined : "forest",
+                      bgMagic: undefined,
+                    })
+                  }
+                >
+                  <img src={mana?.forest} alt="forest" width={"30px"} />
                 </IconButton>
               </Stack>
             </Grid>
