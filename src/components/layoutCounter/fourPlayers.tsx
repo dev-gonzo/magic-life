@@ -26,8 +26,9 @@ export const FourPlayers = () => {
               backgroundPosition: "center",
               transform: "rotate(180deg)",
             }}
-            bgcolor={"orange"}
+            bgcolor={"#848A9C"}
             height={"50%"}
+            overflow={"hidden"}
           >
             <Stack
               width={"100%"}
@@ -47,6 +48,7 @@ export const FourPlayers = () => {
               backgroundPosition: "center",
             }}
             bgcolor={"orange"}
+            overflow={"hidden"}
           >
             <Stack
               width={"100%"}
@@ -73,6 +75,8 @@ export const FourPlayers = () => {
               backgroundPosition: "center",
               transform: "rotate(180deg)",
             }}
+            bgcolor={"#1F2A38"}
+            overflow={"hidden"}
           >
             <Stack
               width={"100%"}
@@ -90,6 +94,8 @@ export const FourPlayers = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
+            bgcolor={"#34495E"}
+            overflow={"hidden"}
           >
             <Stack
               width={"100%"}

@@ -12,8 +12,11 @@ import {
 import { mana } from "../../data/mana";
 import { bgMagic } from "../../data/background";
 import { useEffect, useState } from "react";
+import { FaCircleXmark } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 export const PageEditPlayer = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState<{
     name: string;
     parther: boolean;
@@ -32,9 +35,14 @@ export const PageEditPlayer = () => {
 
   return (
     <>
-      <Stack height={"100vh"} bgcolor={"black"} padding={2}>
-        <Stack flexGrow={1} borderRadius={3} bgcolor={"GrayText"}>
-          <Grid container padding={2} spacing={2}>
+      <Stack height={"100vh"} bgcolor={"#1F2A38"} padding={2}>
+        <Stack
+          flexGrow={1}
+          borderRadius={3}
+          bgcolor={"#34495E"}
+          justifyContent={"space-between"}
+        >
+          <Grid container padding={2} spacing={1}>
             <Grid item xs={12}>
               <Typography variant="h5" fontWeight={"bold"} textAlign={"center"}>
                 Player 1
@@ -94,7 +102,14 @@ export const PageEditPlayer = () => {
                     })
                   }
                 >
-                  <img src={mana?.island} alt="blue" width={"30px"} />
+                  <Box
+                    sx={{ border: "2px solid white" }}
+                    height={"34px"}
+                    width={"34px"}
+                    borderRadius={50}
+                  >
+                    <img src={mana?.island} alt="blue" width={"30px"} />
+                  </Box>
                 </IconButton>
                 <IconButton
                   onClick={() =>
@@ -161,6 +176,9 @@ export const PageEditPlayer = () => {
               </Stack>
             </Grid>
           </Grid>
+          <IconButton onClick={() => navigate("/counter")}>
+            <FaCircleXmark size={22} color="black" />
+          </IconButton>
         </Stack>
       </Stack>
     </>

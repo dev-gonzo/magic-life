@@ -3,6 +3,7 @@ import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { CommanderDamage } from "../commanderDamage";
 import { Props } from "./types";
 import { useCouterIndividual } from "./useCouterIndividual";
+import { TitleCard } from "../titleCard";
 
 export const CounterIndividual = ({ playerId }: Props) => {
   const { layerView } = useCouterIndividual(playerId);
@@ -12,11 +13,7 @@ export const CounterIndividual = ({ playerId }: Props) => {
   if (player?.viewCommanderDamage) {
     return (
       <>
-        <Stack
-          flexGrow={1}
-          alignItems={"center"}
-          borderRadius={3}
-        >
+        <Stack flexGrow={1} alignItems={"center"} borderRadius={3}>
           <Stack>Damage Commander</Stack>
           <Stack
             flexGrow={1}
@@ -36,17 +33,12 @@ export const CounterIndividual = ({ playerId }: Props) => {
 
   return (
     <>
-      <Stack
-        height={"100%"}
-        flexDirection={"row"}
-        gap={0.5}
-        borderRadius={3}
-      >
+      <Stack height={"100%"} flexDirection={"row"} gap={0.5} borderRadius={3}>
         <Stack justifyContent={"center"} width={"20%"}>
           {layerView?.sideLeft}
         </Stack>
         <Stack flexGrow={1} alignItems={"center"}>
-          <Stack>{layerView?.title}</Stack>
+          <TitleCard title={layerView?.title} />
           <Stack flexGrow={1} justifyContent={"center"} alignItems={"center"}>
             {layerView?.main}
           </Stack>
