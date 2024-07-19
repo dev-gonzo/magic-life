@@ -36,6 +36,9 @@ export const Bar = () => {
             alignItems={"center"}
             sx={{ transform: "rotate(270deg)" }}
             color={"white"}
+            onClick={ () => {
+              navigate("/clear-config")
+            }}
           >
             <FaTrashAlt size={17} />
           </Stack>

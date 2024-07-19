@@ -37,6 +37,12 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
     ) as ConfigPlayer;
   },
 
+  resetConfigPlayers: () =>
+    set(() => {
+      localStorage.removeItem("configPlayers");
+      return { configPlayers: [] };
+    }),
+
   initGame: (playersNumber) =>
     set((state) => {
       const oldPlayersQtd = state?.players?.length;

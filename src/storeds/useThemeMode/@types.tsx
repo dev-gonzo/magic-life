@@ -21,6 +21,7 @@ export type PropsInfoPlayers = {
 
   saveConfigPlayers: (configPlayer: ConfigPlayer) => void;
   getConfigPlayer: (playerId: number) => ConfigPlayer;
+  resetConfigPlayers: () => void;
 
   initGame: (playersNumber?: number) => void;
   updatePlayers: (infoPlayer: InfoPlayer) => void;
