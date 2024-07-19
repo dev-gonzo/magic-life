@@ -13,7 +13,6 @@ export const CounterIndividual = ({ playerId }: Props) => {
     return (
       <>
         <Stack
-          bgcolor={"red"}
           flexGrow={1}
           alignItems={"center"}
           borderRadius={3}
@@ -41,13 +40,12 @@ export const CounterIndividual = ({ playerId }: Props) => {
         height={"100%"}
         flexDirection={"row"}
         gap={0.5}
-        bgcolor={"green"}
         borderRadius={3}
       >
         <Stack justifyContent={"center"} width={"20%"}>
           {layerView?.sideLeft}
         </Stack>
-        <Stack bgcolor={"red"} flexGrow={1} alignItems={"center"}>
+        <Stack flexGrow={1} alignItems={"center"}>
           <Stack>{layerView?.title}</Stack>
           <Stack flexGrow={1} justifyContent={"center"} alignItems={"center"}>
             {layerView?.main}

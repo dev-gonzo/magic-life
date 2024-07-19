@@ -26,6 +26,8 @@ export const FourPlayers = () => {
               backgroundPosition: "center",
               transform: "rotate(180deg)",
             }}
+            bgcolor={"orange"}
+            height={"50%"}
           >
             <Stack
               width={"100%"}
@@ -36,6 +38,7 @@ export const FourPlayers = () => {
             </Stack>
           </Stack>
           <Stack
+            height={"50%"}
             flexGrow={1}
             borderRadius={5}
             sx={{
@@ -43,6 +46,7 @@ export const FourPlayers = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
+            bgcolor={"orange"}
           >
             <Stack
               width={"100%"}
