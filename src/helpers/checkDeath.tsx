@@ -1,13 +1,11 @@
-
 import { InfoPlayer } from "../@types";
 import { checkDeathCommander } from "./checkDeathCommander";
 
 export const checkDeath = (playerNumber: number, actionDeath: () => void) => {
-  const sessionPlayers: null | undefined | string =
-    sessionStorage.getItem("players");
+  const players: null | undefined | string = localStorage.getItem("players");
 
-  if (sessionPlayers && sessionPlayers !== null) {
-    const infoPlayers: InfoPlayer[] = JSON.parse(sessionPlayers);
+  if (players && players !== null) {
+    const infoPlayers: InfoPlayer[] = JSON.parse(players);
 
     const indexPlayer = infoPlayers?.findIndex(
       (item) => item?.player == playerNumber
@@ -15,10 +13,13 @@ export const checkDeath = (playerNumber: number, actionDeath: () => void) => {
 
     const player = infoPlayers[indexPlayer];
 
+    console.log(player);
     if (
-      player?.life === 0 ||
-      player?.infect == 10 ||
-      checkDeathCommander(player?.commanderDamage)
+      !player?.loses &&
+      !player?.immmortal &&
+      (player?.life === 0 ||
+        player?.infect == 10 ||
+        checkDeathCommander(player?.commanderDamage))
     ) {
       actionDeath();
     }

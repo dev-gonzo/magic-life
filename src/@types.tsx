@@ -47,7 +47,7 @@ export type DamageCommander = {
 };
 
 export type Layers = {
-  title: string;
+  title?: string;
   main: ReactNode;
   footer: ReactNode;
   sideLeft: ReactNode;

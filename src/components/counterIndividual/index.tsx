@@ -1,11 +1,11 @@
 import { Stack } from "@mui/material";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { CommanderDamage } from "../commanderDamage";
-import { Props } from "./types";
-import { useCouterIndividual } from "./useCouterIndividual";
-import { TitleCard } from "../titleCard";
 import { Death } from "../death";
 import { FooterDeath } from "../footerDeath";
+import { TitleCard } from "../titleCard";
+import { Props } from "./types";
+import { useCouterIndividual } from "./useCouterIndividual";
 
 export const CounterIndividual = ({ playerId }: Props) => {
   const { layerView } = useCouterIndividual(playerId);
