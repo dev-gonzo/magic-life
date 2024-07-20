@@ -303,7 +303,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
 
   setSorted: (playerId) =>
     set((state) => {
-      console.log(playerId)
+      console.log()
       const newInfoPlayers = state?.players?.map((item) => {
         return {
           ...item,

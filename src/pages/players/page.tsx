@@ -15,34 +15,40 @@ export default function PagePlayers() {
         padding={2}
         flexWrap={"wrap"}
         alignItems={"center"}
-        justifyContent={"center"}
+        justifyContent={"space-evenly"}
         height={"100vh"}
-        bgcolor={"black"}
+        bgcolor={"#1F2A38"}
       >
         <Stack
           flexDirection={"row"}
-          borderRadius={20}
-          bgcolor={"gray"}
+          borderRadius={5}
+          bgcolor={"#34495E"}
           padding={2}
           onClick={() => {
             initGame(2);
             navigate("/counter");
           }}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={1}
         >
-          <FaUser size={50} />
-          <FaUser size={50} />
+          <FaUser size={50} style={{ transform: "rotate(90deg)" }} />
           <Typography variant="h4">2</Typography>
+          <FaUser size={50} style={{ transform: "rotate(270deg)" }} />
         </Stack>
 
         <Stack
           flexDirection={"row"}
-          borderRadius={20}
-          bgcolor={"gray"}
+          borderRadius={5}
+          bgcolor={"#34495E"}
           padding={2}
           onClick={() => {
             initGame(3);
             navigate("/counter");
           }}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={1}
         >
           <FaUser size={50} />
           <FaUser size={50} />
@@ -52,97 +58,82 @@ export default function PagePlayers() {
 
         <Stack
           flexDirection={"row"}
-          borderRadius={20}
-          bgcolor={"gray"}
+          borderRadius={5}
+          bgcolor={"#34495E"}
           padding={2}
           onClick={() => {
             initGame(4);
             navigate("/counter");
           }}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={1}
         >
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
+          <Stack>
+            <FaUser size={50} style={{ transform: "rotate(90deg)" }} />
+            <FaUser size={50} style={{ transform: "rotate(90deg)" }} />
+          </Stack>
           <Typography variant="h4">4</Typography>
+          <Stack>
+            <FaUser size={50} style={{ transform: "rotate(270deg)" }} />
+            <FaUser size={50} style={{ transform: "rotate(270deg)" }} />
+          </Stack>
         </Stack>
 
         <Stack
           flexDirection={"row"}
-          borderRadius={20}
-          bgcolor={"gray"}
+          borderRadius={5}
+          bgcolor={"#34495E"}
           padding={2}
           onClick={() => {
             initGame(5);
             navigate("/counter");
           }}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={1}
         >
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
+          <Stack gap={1}>
+            <FaUser size={50} style={{ transform: "rotate(180deg)" }} />
+            <FaUser size={50} />
+          </Stack>
+          <Stack gap={1}>
+            <FaUser size={50} style={{ transform: "rotate(180deg)" }} />
+            <FaUser size={50} />
+          </Stack>
+          <Stack gap={1}>
+            <FaUser size={50} style={{ transform: "rotate(270deg)" }} />
+          </Stack>
           <Typography variant="h4">5</Typography>
         </Stack>
 
         <Stack
           flexDirection={"row"}
-          borderRadius={20}
-          bgcolor={"gray"}
+          borderRadius={5}
+          bgcolor={"#34495E"}
           padding={2}
           onClick={() => {
             initGame(6);
             navigate("/counter");
           }}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={1}
         >
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
+          <Stack gap={1}>
+            <FaUser size={50} style={{ transform: "rotate(180deg)" }} />
+            <FaUser size={50} />
+          </Stack>
+          <Stack gap={1}>
+            <FaUser size={50} style={{ transform: "rotate(180deg)" }} />
+            <FaUser size={50} />
+          </Stack>
+          <Stack gap={1}>
+            <FaUser size={50} style={{ transform: "rotate(180deg)" }} />
+            <FaUser size={50} />
+          </Stack>
+
           <Typography variant="h4">6</Typography>
-        </Stack>
-
-        <Stack
-          flexDirection={"row"}
-          borderRadius={20}
-          bgcolor={"gray"}
-          padding={2}
-          onClick={() => {
-            initGame(7);
-            navigate("/counter");
-          }}
-        >
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <Typography variant="h4">7</Typography>
-        </Stack>
-
-        <Stack
-          flexDirection={"row"}
-          borderRadius={20}
-          bgcolor={"gray"}
-          padding={2}
-          onClick={() => {
-            initGame(8);
-            navigate("/counter");
-          }}
-        >
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <FaUser size={50} />
-          <Typography variant="h4">8</Typography>
         </Stack>
       </Stack>
     </>

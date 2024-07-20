@@ -7,5 +7,9 @@ export const routes = (): Routes[] => {
       path: "/counter",
       element: PageCounter,
     },
+    {
+      path: "/",
+      element: PageCounter,
+    },
   ];
 };
