@@ -3,14 +3,14 @@ import {
   Checkbox,
   FormControlLabel,
   FormGroup,
-  Grid,
   IconButton,
   Stack,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import { FaCircleXmark } from "react-icons/fa6";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ColorMagic } from "../../@types";
 import { bgMagic } from "../../data/background";
 import { mana } from "../../data/mana";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
@@ -31,13 +31,13 @@ export const PageEditPlayer = () => {
           bgcolor={"#34495E"}
           justifyContent={"space-between"}
         >
-          <Grid container padding={2} spacing={1}>
-            <Grid item xs={12}>
+          <Stack  padding={2} flexGrow={1} display={"flex"} gap={1}>
+            <Stack>
               <Typography variant="h5" fontWeight={"bold"} textAlign={"center"}>
                 Player {playerId}
               </Typography>
-            </Grid>
-            <Grid item xs={8}>
+            </Stack>
+            <Stack flexDirection={"row"} gap={2} >
               <TextField
                 name="playerName"
                 value={playerConfig?.playerName}
@@ -51,10 +51,9 @@ export const PageEditPlayer = () => {
                 variant="standard"
                 size="small"
                 placeholder="Player name"
-                fullWidth
+                sx={{width: "70%"}}
               />
-            </Grid>
-            <Grid item xs={4}>
+          
               <FormGroup>
                 <FormControlLabel
                   control={
@@ -73,171 +72,92 @@ export const PageEditPlayer = () => {
                   label="Commander Parther"
                 />
               </FormGroup>
-            </Grid>
-            <Grid item xs={12}>
-              <Stack flexDirection={"row"}>
-                <IconButton
-                  onClick={() =>
-                    saveConfigPlayers({
-                      ...playerConfig,
-                      player: playerId,
-                      color:
-                        playerConfig?.color == "plains" ? undefined : "plains",
-                      bgMagic: undefined,
-                    })
-                  }
-                >
-                  <Box
-                    sx={{
-                      border:
-                        playerConfig?.color == "plains"
-                          ? "2px solid black"
-                          : undefined,
-                    }}
-                    height={"34px"}
-                    width={"34px"}
-                    borderRadius={50}
+            </Stack>
+            <Stack  paddingBottom={2}>
+              <Stack
+                flexDirection={"row"}
+                flexWrap={"wrap"}
+                height={"38px"}
+                
+              >
+                {Object.entries(mana).map(([key, value]) => (
+                  <IconButton
+                  key={`mana-magic-${key}`}
+                    onClick={() =>
+                      saveConfigPlayers({
+                        ...playerConfig,
+                        player: playerId,
+                        color:
+                          playerConfig?.color == key
+                            ? undefined
+                            : (key as ColorMagic),
+                        bgMagic: undefined,
+                      })
+                    }
                   >
-                    <img src={mana?.plains} alt="white" width={"30px"} />
-                  </Box>
-                </IconButton>
-                <IconButton
-                  onClick={() =>
-                    saveConfigPlayers({
-                      ...playerConfig,
-                      player: playerId,
-                      color:
-                        playerConfig?.color == "island" ? undefined : "island",
-                      bgMagic: undefined,
-                    })
-                  }
-                >
-                  <Box
-                    sx={{
-                      border:
-                        playerConfig?.color == "island"
-                          ? "2px solid black"
-                          : undefined,
-                    }}
-                    height={"34px"}
-                    width={"34px"}
-                    borderRadius={50}
-                  >
-                    <img src={mana?.island} alt="blue" width={"30px"} />
-                  </Box>
-                </IconButton>
-                <IconButton
-                  onClick={() =>
-                    saveConfigPlayers({
-                      ...playerConfig,
-                      player: playerId,
-                      color:
-                        playerConfig?.color == "swamp" ? undefined : "swamp",
-                      bgMagic: undefined,
-                    })
-                  }
-                >
-                  <Box
-                    sx={{
-                      border:
-                        playerConfig?.color == "swamp"
-                          ? "2px solid black"
-                          : undefined,
-                    }}
-                    height={"34px"}
-                    width={"34px"}
-                    borderRadius={50}
-                  >
-                    <img src={mana?.swamp} alt="Swamp" width={"30px"} />
-                  </Box>
-                </IconButton>
-                <IconButton
-                  onClick={() =>
-                    saveConfigPlayers({
-                      ...playerConfig,
-                      player: playerId,
-                      color:
-                        playerConfig?.color == "mountain"
-                          ? undefined
-                          : "mountain",
-                      bgMagic: undefined,
-                    })
-                  }
-                >
-                  <Box
-                    sx={{
-                      border:
-                        playerConfig?.color == "mountain"
-                          ? "2px solid black"
-                          : undefined,
-                    }}
-                    height={"34px"}
-                    width={"34px"}
-                    borderRadius={50}
-                  >
-                    <img src={mana?.mountain} alt="mountain" width={"30px"} />
-                  </Box>
-                </IconButton>
-                <IconButton
-                  onClick={() =>
-                    saveConfigPlayers({
-                      ...playerConfig,
-                      player: playerId,
-                      color:
-                        playerConfig?.color == "forest" ? undefined : "forest",
-                      bgMagic: undefined,
-                    })
-                  }
-                >
-                  <Box
-                    sx={{
-                      border:
-                        playerConfig?.color == "forest"
-                          ? "2px solid black"
-                          : undefined,
-                    }}
-                    height={"34px"}
-                    width={"34px"}
-                    borderRadius={50}
-                  >
-                    <img src={mana?.forest} alt="forest" width={"30px"} />
-                  </Box>
-                </IconButton>
-              </Stack>
-            </Grid>
-            <Grid item xs={12}>
-              <Stack flexDirection={"row"} gap={2}>
-                {playerConfig?.color ? (
-                  <>
-                    {Object.values(bgMagic[playerConfig.color])?.map((item) => (
+                    <Stack
+                      height={"35px"}
+                      width={"35px"}
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                    >
                       <Box
-                        border={
-                          playerConfig?.bgMagic == item
-                            ? "2px solid black"
-                            : undefined
-                        }
-                        width={"80px"}
-                        height={"80px"}
-                        bgcolor={"red"}
                         sx={{
-                          backgroundImage: `url(${item})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
+                          border:
+                            playerConfig?.color == key
+                              ? "2px solid #13111A"
+                              : undefined,
                         }}
-                        onClick={() => {
-                          saveConfigPlayers({
-                            ...playerConfig,
-                            player: playerId,
-                            bgMagic: item,
-                          });
-                        }}
-                      />
-                    ))}
+                        height={playerConfig?.color == key ? "34px" : "30px"}
+                        width={playerConfig?.color == key ? "34px" : "30px"}
+                        borderRadius={50}
+                        bgcolor={value?.color}
+                      >
+                        {value?.icon ? (
+                          <img src={value?.icon} alt={value?.color} width={"30px"} />
+                        ) : null}
+                      </Box>
+                    </Stack>
+                  </IconButton>
+                ))}
+              </Stack>
+            </Stack>
+            <Stack   flexGrow={1}>
+              <Stack flexDirection={"row"} gap={2}>
+                {playerConfig?.color &&
+                mana[playerConfig.color]?.icon ? (
+                  <>
+                    {Object?.values(bgMagic[playerConfig.color])?.map(
+                      (item) => (
+                        <Box
+                          border={
+                            playerConfig?.bgMagic == 
+                              item ? "2px solid #13111A"
+                              : undefined
+                          }
+                          borderRadius={3}
+                          width={"80px"}
+                          height={"80px"}
+                          sx={{
+                            backgroundImage: `url(${item})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                          }}
+                          onClick={() => {
+                            saveConfigPlayers({
+                              ...playerConfig,
+                              player: playerId,
+                              bgMagic: item,
+                            });
+                          }}
+                        />
+                      )
+                    )}
                   </>
                 ) : null}
               </Stack>
-            </Grid>
-          </Grid>
+            </Stack>
+          </Stack>
           <IconButton onClick={() => navigate("/counter")}>
             <FaCircleXmark size={22} color="black" />
           </IconButton>

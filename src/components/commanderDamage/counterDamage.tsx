@@ -26,6 +26,7 @@ any) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
+          bgcolor={player?.color ? player?.color: "#34495E"}
         >
           <Stack>
             <IconButton

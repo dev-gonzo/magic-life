@@ -20,15 +20,26 @@ export type InfoPlayer = {
   citysBlessing: boolean;
   monarch: boolean;
   viewCommanderDamage: boolean;
+  loses: boolean;
+  immmortal: boolean;
+  sorted: boolean
 };
 
 export type ConfigPlayer = {
   player: number;
   playerName: string;
   parther: boolean;
-  color?: "plains" | "island" | "swamp" | "mountain" | "forest";
+  color?: ColorMagic;
   bgMagic?: string;
 };
+
+export type ColorMagic =
+  | "plains"
+  | "island"
+  | "swamp"
+  | "mountain"
+  | "forest"
+  | "waste";
 
 export type DamageCommander = {
   player: number;
@@ -37,7 +48,7 @@ export type DamageCommander = {
 };
 
 export type Layers = {
-  title: string;
+  title?: string;
   main: ReactNode;
   footer: ReactNode;
   sideLeft: ReactNode;
@@ -47,6 +58,10 @@ export type Layers = {
 export type Position = "horizontal" | "vertical";
 
 export type DirectionSide = "left" | "right";
+
+export type RollDice = {
+  rollDice: () => void;
+};
 
 export type Layer =
   | "life"

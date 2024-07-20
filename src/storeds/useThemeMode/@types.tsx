@@ -21,6 +21,7 @@ export type PropsInfoPlayers = {
 
   saveConfigPlayers: (configPlayer: ConfigPlayer) => void;
   getConfigPlayer: (playerId: number) => ConfigPlayer;
+  resetConfigPlayers: () => void;
 
   initGame: (playersNumber?: number) => void;
   updatePlayers: (infoPlayer: InfoPlayer) => void;
@@ -41,6 +42,7 @@ export type PropsInfoPlayers = {
   ) => void;
 
   setMonarch: (playerId: number) => void;
+  setSorted: (playerId: number) => void;
   toogleShowCommander: (playerId: number) => void;
   setShowTemp: (playerId: number, layer: Layer) => void;
   cleanShowTemp: () => void;

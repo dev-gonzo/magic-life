@@ -1,21 +1,26 @@
 import { Stack } from "@mui/material";
-import { FaUserFriends } from "react-icons/fa";
+import { FaTrashAlt, FaUserFriends } from "react-icons/fa";
 import { FaRepeat } from "react-icons/fa6";
-import { MdMenu } from "react-icons/md";
-import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
+import { GiDiceTwentyFacesTwenty } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
+import { RollDice } from "../../@types";
 
-export const Bar = () => {
+export const Bar = ({ rollDice }: RollDice) => {
   const navigate = useNavigate();
   const { initGame, players } = useGamePlayers();
   return (
     <>
       <>
-        <Stack justifyContent={"center"} alignItems={"center"} padding={0.5}>
+        <Stack
+          justifyContent={"space-around"}
+          alignItems={"center"}
+          padding={0.5}
+        >
           <Stack
             borderRadius={50}
-            width={40}
-            height={40}
+            width={22}
+            height={22}
             justifyContent={"center"}
             alignItems={"center"}
             sx={{ transform: "rotate(270deg)" }}
@@ -24,31 +29,45 @@ export const Bar = () => {
               initGame(players?.length);
             }}
           >
-            <FaRepeat size={25} />
+            <FaRepeat size={17} />
           </Stack>
           <Stack
             borderRadius={50}
-            width={40}
-            height={40}
+            width={22}
+            height={22}
             justifyContent={"center"}
             alignItems={"center"}
-            sx={{ transform: "rotate(90deg)" }}
+            sx={{ transform: "rotate(270deg)" }}
             color={"white"}
-            bgcolor={"gray"}
+            onClick={() => {
+              navigate("/clear-config");
+            }}
           >
-            <MdMenu size={25} />
+            <FaTrashAlt size={17} />
           </Stack>
           <Stack
             borderRadius={50}
-            width={40}
-            height={40}
+            width={22}
+            height={22}
+            justifyContent={"center"}
+            alignItems={"center"}
+            sx={{ transform: "rotate(270deg)" }}
+            color={"white"}
+            onClick={() => rollDice()}
+          >
+            <GiDiceTwentyFacesTwenty size={17} />
+          </Stack>
+          <Stack
+            borderRadius={50}
+            width={22}
+            height={22}
             justifyContent={"center"}
             alignItems={"center"}
             sx={{ transform: "rotate(270deg)" }}
             color={"white"}
             onClick={() => navigate("/players")}
           >
-            <FaUserFriends size={25} />
+            <FaUserFriends size={17} />
           </Stack>
         </Stack>
       </>

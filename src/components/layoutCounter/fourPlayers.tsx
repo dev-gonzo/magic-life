@@ -1,9 +1,11 @@
 import { Stack } from "@mui/material";
+import { RollDice } from "../../@types";
+import { mana } from "../../data/mana";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { CounterIndividual } from "../counterIndividual";
 import { Bar } from "./bar";
-import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 
-export const FourPlayers = () => {
+export const FourPlayers = ({rollDice}: RollDice) => {
   const { getConfigPlayer } = useGamePlayers();
   const player1 = getConfigPlayer(1);
   const player2 = getConfigPlayer(2);
@@ -17,6 +19,7 @@ export const FourPlayers = () => {
         width={"100%"}
         maxHeight={"100vh"}
         padding={0.5}
+        gap={1}
       >
         <Stack
           flexGrow={1}
@@ -33,7 +36,7 @@ export const FourPlayers = () => {
               backgroundPosition: "center",
               transform: "rotate(180deg)",
             }}
-            bgcolor={"#848A9C"}
+            bgcolor={player1?.color ? mana[player1?.color]?.color : "#34495E"}
             height={"50%"}
             overflow={"hidden"}
           >
@@ -54,7 +57,7 @@ export const FourPlayers = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-            bgcolor={"orange"}
+            bgcolor={player2?.color ? mana[player2?.color]?.color : "#34495E"}
             overflow={"hidden"}
           >
             <Stack
@@ -66,7 +69,7 @@ export const FourPlayers = () => {
             </Stack>
           </Stack>
         </Stack>
-        <Bar />
+
         <Stack
           flexGrow={1}
           justifyContent={"center"}
@@ -82,7 +85,7 @@ export const FourPlayers = () => {
               backgroundPosition: "center",
               transform: "rotate(180deg)",
             }}
-            bgcolor={"#1F2A38"}
+            bgcolor={player3?.color ? mana[player3?.color]?.color : "#34495E"}
             overflow={"hidden"}
           >
             <Stack
@@ -101,7 +104,7 @@ export const FourPlayers = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-            bgcolor={"#34495E"}
+            bgcolor={player4?.color ? mana[player4?.color]?.color : "#34495E"}
             overflow={"hidden"}
           >
             <Stack
@@ -113,6 +116,7 @@ export const FourPlayers = () => {
             </Stack>
           </Stack>
         </Stack>
+        <Bar rollDice={rollDice}/>
       </Stack>
     </>
   );

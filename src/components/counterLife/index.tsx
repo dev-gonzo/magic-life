@@ -36,7 +36,7 @@ export const CounterLife = ({ playerId }: Props) => {
         <Box>
           <Typography
             variant="h3"
-            color={player?.life ? "white" : "red"}
+            color={player?.life > 0 && player?.infect < 10 ? "white" : "red"}
             fontWeight={"bold"}
             fontFamily={"monospace"}
             sx={{ textShadow: "2px 2px black" }}

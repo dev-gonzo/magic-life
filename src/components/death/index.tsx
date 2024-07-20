@@ -1,36 +1,27 @@
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { FaSkullCrossbones } from "react-icons/fa";
 
-import { IoCloseCircle } from "react-icons/io5";
-
-export const Death = ({ revivePlayer }: { revivePlayer: () => void }) => {
+export const Death = () => {
   return (
     <>
-      <Stack
-        bgcolor={"blue"}
-        width={"25%"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        border={"1px solid #fff"}
-      >
+      <Stack justifyContent={"center"} alignItems={"center"} flexGrow={1}>
         <Stack
-          width={"25%"}
-          flexDirection={"row"}
           justifyContent={"center"}
           alignItems={"center"}
           flexGrow={1}
+          gap={1}
         >
-          <FaSkullCrossbones size={60} />
-        </Stack>
-        <Stack
-          paddingY={1}
-          flexWrap={"nowrap"}
-          flexDirection={"row"}
-          alignItems={"center"}
-          gap={0.5}
-          onClick={() => revivePlayer()}
-        >
-          <IoCloseCircle />
+          <FaSkullCrossbones size={60} color="white" />
+          <Typography
+            variant="body1"
+            color={"white"}
+            fontWeight={"bold"}
+            textAlign={"center"}
+            fontFamily={"monospace"}
+            sx={{ textShadow: "1px 1px black" }}
+          >
+            Congratulations you lost!
+          </Typography>
         </Stack>
       </Stack>
     </>
