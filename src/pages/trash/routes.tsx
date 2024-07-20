@@ -4,7 +4,7 @@ import { PageClearPlayers } from "./page";
 export const routes = (): Routes[] => {
   return [
     {
-      path: "/clear-config",
+      path: "magic-life/clear-config",
       element: PageClearPlayers,
     },
   ];

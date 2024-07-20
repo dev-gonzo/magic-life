@@ -5,7 +5,7 @@ import PagePlayers from "./page";
 export const routes = (): Routes[] => {
   return [
     {
-      path: "/players",
+      path: "magic-life/players",
       element: PagePlayers,
     },
   ];
