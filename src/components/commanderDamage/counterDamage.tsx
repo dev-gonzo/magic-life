@@ -21,7 +21,7 @@ any) => {
           justifyContent={"center"}
           alignItems={"center"}
           flexDirection={"row"}
-          gap={0.5}
+          marginX={0.3}
           sx={{
             backgroundImage: `url(${player?.bgMagic})`,
             backgroundSize: "cover",

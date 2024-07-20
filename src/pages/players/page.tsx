@@ -133,7 +133,7 @@ export default function PagePlayers() {
             <FaUser size={50} />
           </Stack>
 
-          <Typography variant="h4">5</Typography>
+          <Typography variant="h4">6</Typography>
         </Stack>
       </Stack>
     </>

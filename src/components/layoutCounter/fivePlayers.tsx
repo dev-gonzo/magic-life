@@ -137,6 +137,7 @@ export const FivePlayers = ({ rollDice }: RollDice) => {
             gap={1}
           >
             <Stack
+            width={`${width * 1.15}px`}
               borderRadius={5}
               height={`${width}px`}
               sx={{

@@ -6,7 +6,7 @@ import {
   IconButton,
   Stack,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { FaCircleXmark } from "react-icons/fa6";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ import { ColorMagic } from "../../@types";
 import { bgMagic } from "../../data/background";
 import { mana } from "../../data/mana";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
+import { useState } from "react";
 
 export const PageEditPlayer = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export const PageEditPlayer = () => {
   const playerId = location?.state?.playerId;
   const { getConfigPlayer, saveConfigPlayers } = useGamePlayers();
   const playerConfig = getConfigPlayer(playerId);
+  const [playerName, setPlayerName] = useState(playerConfig?.playerName || "");
 
   return (
     <>
@@ -31,17 +33,18 @@ export const PageEditPlayer = () => {
           bgcolor={"#34495E"}
           justifyContent={"space-between"}
         >
-          <Stack  padding={2} flexGrow={1} display={"flex"} gap={1}>
+          <Stack padding={2} flexGrow={1} display={"flex"} gap={1}>
             <Stack>
               <Typography variant="h5" fontWeight={"bold"} textAlign={"center"}>
                 Player {playerId}
               </Typography>
             </Stack>
-            <Stack flexDirection={"row"} gap={2} >
+            <Stack flexDirection={"row"} gap={2}>
               <TextField
                 name="playerName"
-                value={playerConfig?.playerName}
+                value={playerName}
                 onChange={(e) => {
+                  setPlayerName(e?.target?.value);
                   saveConfigPlayers({
                     ...playerConfig,
                     player: playerId,
@@ -51,9 +54,9 @@ export const PageEditPlayer = () => {
                 variant="standard"
                 size="small"
                 placeholder="Player name"
-                sx={{width: "70%"}}
+                sx={{ width: "70%" }}
               />
-          
+
               <FormGroup>
                 <FormControlLabel
                   control={
@@ -73,16 +76,11 @@ export const PageEditPlayer = () => {
                 />
               </FormGroup>
             </Stack>
-            <Stack  paddingBottom={2}>
-              <Stack
-                flexDirection={"row"}
-                flexWrap={"wrap"}
-                height={"38px"}
-                
-              >
+            <Stack paddingBottom={2}>
+              <Stack flexDirection={"row"} flexWrap={"wrap"} height={"38px"}>
                 {Object.entries(mana).map(([key, value]) => (
                   <IconButton
-                  key={`mana-magic-${key}`}
+                    key={`mana-magic-${key}`}
                     onClick={() =>
                       saveConfigPlayers({
                         ...playerConfig,
@@ -114,7 +112,11 @@ export const PageEditPlayer = () => {
                         bgcolor={value?.color}
                       >
                         {value?.icon ? (
-                          <img src={value?.icon} alt={value?.color} width={"30px"} />
+                          <img
+                            src={value?.icon}
+                            alt={value?.color}
+                            width={"30px"}
+                          />
                         ) : null}
                       </Box>
                     </Stack>
@@ -122,17 +124,17 @@ export const PageEditPlayer = () => {
                 ))}
               </Stack>
             </Stack>
-            <Stack   flexGrow={1}>
+            <Stack flexGrow={1}>
               <Stack flexDirection={"row"} gap={2}>
-                {playerConfig?.color &&
-                mana[playerConfig.color]?.icon ? (
+                {playerConfig?.color && mana[playerConfig.color]?.icon ? (
                   <>
                     {Object?.values(bgMagic[playerConfig.color])?.map(
                       (item) => (
                         <Box
+                          key={`img-arts-magic-${item}`}
                           border={
-                            playerConfig?.bgMagic == 
-                              item ? "2px solid #13111A"
+                            playerConfig?.bgMagic == item
+                              ? "2px solid #13111A"
                               : undefined
                           }
                           borderRadius={3}

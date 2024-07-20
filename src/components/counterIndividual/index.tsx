@@ -46,7 +46,7 @@ export const CounterIndividual = ({ playerId }: Props) => {
             alignItems={"center"}
             flexDirection={"row"}
             flexWrap={"wrap"}
-            gap={1}
+            gap={0}
           >
             <CommanderDamage playerId={playerId} />
           </Stack>

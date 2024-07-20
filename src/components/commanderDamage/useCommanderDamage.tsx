@@ -6,15 +6,16 @@ export const useCommanderDamage = (playerId: number) => {
 
   const listCommander = players.map((item) => {
     const damageCommander = player?.commanderDamage?.filter(
-      (item2) => item2?.player == item?.player
+      (commander) => commander?.player == item?.player
     );
 
     return {
       playerCommander: item?.player,
-      damageCommander1: damageCommander?.find((item) => item?.commander == 1)
-        ?.damage ?? 0,
-      damageCommander2: damageCommander?.find((item) => item?.commander == 2)
-        ?.damage ?? getConfigPlayer(item?.player)?.parther ? 0 : undefined,
+      damageCommander1:
+        damageCommander?.find((item) => item?.commander == 1)?.damage ?? 0,
+      damageCommander2: getConfigPlayer(item?.player)?.parther
+        ? damageCommander?.find((item) => item?.commander == 2)?.damage ?? 0
+        : undefined,
     };
   });
 
