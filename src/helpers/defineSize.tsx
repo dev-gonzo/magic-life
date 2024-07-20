@@ -1,5 +1,5 @@
 export const defineSize = (playersNumber: number) => {
-  if (playersNumber >= 5) {
+  if (playersNumber >= 5 || playersNumber == 3) {
     return "small";
   }
 
