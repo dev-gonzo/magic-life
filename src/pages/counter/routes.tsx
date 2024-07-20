@@ -4,7 +4,7 @@ import PageCounter from "./page";
 export const routes = (): Routes[] => {
   return [
     {
-      path: "magic-life/counter",
+      path: "/counter",
       element: PageCounter,
     },
     {
