@@ -70,7 +70,7 @@ export const ModalAssorted = ({
   );
 
   return (
-    <Modal open={open}>
+    <Modal open={open} disableAutoFocus>
       <Stack
         height={"100vh"}
         justifyContent={"center"}
