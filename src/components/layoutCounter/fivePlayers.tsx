@@ -39,7 +39,6 @@ export const FivePlayers = ({ rollDice }: RollDice) => {
           gap={1}
         >
           <Stack
-            flexGrow={1}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player1?.bgMagic})`,
@@ -61,7 +60,6 @@ export const FivePlayers = ({ rollDice }: RollDice) => {
           </Stack>
           <Stack
             height={"50%"}
-            flexGrow={1}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player2?.bgMagic})`,
@@ -88,8 +86,8 @@ export const FivePlayers = ({ rollDice }: RollDice) => {
           gap={1}
         >
           <Stack
-            flexGrow={1}
             borderRadius={5}
+            height={"50%"}
             sx={{
               backgroundImage: `url(${player3?.bgMagic})`,
               backgroundSize: "cover",
@@ -108,7 +106,7 @@ export const FivePlayers = ({ rollDice }: RollDice) => {
             </Stack>
           </Stack>
           <Stack
-            flexGrow={1}
+            height={"50%"}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player4?.bgMagic})`,
@@ -137,7 +135,7 @@ export const FivePlayers = ({ rollDice }: RollDice) => {
             gap={1}
           >
             <Stack
-            width={`${width * 1.15}px`}
+              width={`${width * 1.15}px`}
               borderRadius={5}
               height={`${width}px`}
               sx={{

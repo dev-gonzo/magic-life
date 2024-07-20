@@ -26,9 +26,9 @@ export const FourPlayers = ({rollDice}: RollDice) => {
           justifyContent={"center"}
           width={"calc(50% - 40px)"}
           gap={1}
+          
         >
           <Stack
-            flexGrow={1}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player1?.bgMagic})`,
@@ -50,7 +50,6 @@ export const FourPlayers = ({rollDice}: RollDice) => {
           </Stack>
           <Stack
             height={"50%"}
-            flexGrow={1}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player2?.bgMagic})`,
@@ -77,7 +76,7 @@ export const FourPlayers = ({rollDice}: RollDice) => {
           gap={1}
         >
           <Stack
-            flexGrow={1}
+            // flexGrow={1}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player3?.bgMagic})`,
@@ -87,6 +86,7 @@ export const FourPlayers = ({rollDice}: RollDice) => {
             }}
             bgcolor={player3?.color ? mana[player3?.color]?.color : "#34495E"}
             overflow={"hidden"}
+            height={"50%"}
           >
             <Stack
               width={"100%"}
@@ -97,7 +97,7 @@ export const FourPlayers = ({rollDice}: RollDice) => {
             </Stack>
           </Stack>
           <Stack
-            flexGrow={1}
+            // flexGrow={1}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player4?.bgMagic})`,
@@ -106,6 +106,7 @@ export const FourPlayers = ({rollDice}: RollDice) => {
             }}
             bgcolor={player4?.color ? mana[player4?.color]?.color : "#34495E"}
             overflow={"hidden"}
+            height={"50%"}
           >
             <Stack
               width={"100%"}

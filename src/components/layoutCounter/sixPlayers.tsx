@@ -5,7 +5,7 @@ import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { CounterIndividual } from "../counterIndividual";
 import { Bar } from "./bar";
 
-export const SixPlayers = ({rollDice}: RollDice) => {
+export const SixPlayers = ({ rollDice }: RollDice) => {
   const { getConfigPlayer } = useGamePlayers();
   const player1 = getConfigPlayer(1);
   const player2 = getConfigPlayer(2);
@@ -30,7 +30,6 @@ export const SixPlayers = ({rollDice}: RollDice) => {
           gap={1}
         >
           <Stack
-            flexGrow={1}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player1?.bgMagic})`,
@@ -52,7 +51,6 @@ export const SixPlayers = ({rollDice}: RollDice) => {
           </Stack>
           <Stack
             height={"50%"}
-            flexGrow={1}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player2?.bgMagic})`,
@@ -79,8 +77,8 @@ export const SixPlayers = ({rollDice}: RollDice) => {
           gap={1}
         >
           <Stack
-            flexGrow={1}
             borderRadius={5}
+            height={"50%"}
             sx={{
               backgroundImage: `url(${player3?.bgMagic})`,
               backgroundSize: "cover",
@@ -99,7 +97,7 @@ export const SixPlayers = ({rollDice}: RollDice) => {
             </Stack>
           </Stack>
           <Stack
-            flexGrow={1}
+            height={"50%"}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player4?.bgMagic})`,
@@ -125,7 +123,7 @@ export const SixPlayers = ({rollDice}: RollDice) => {
           gap={1}
         >
           <Stack
-            flexGrow={1}
+            height={"50%"}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player5?.bgMagic})`,
@@ -145,7 +143,7 @@ export const SixPlayers = ({rollDice}: RollDice) => {
             </Stack>
           </Stack>
           <Stack
-            flexGrow={1}
+            height={"50%"}
             borderRadius={5}
             sx={{
               backgroundImage: `url(${player6?.bgMagic})`,
@@ -164,7 +162,7 @@ export const SixPlayers = ({rollDice}: RollDice) => {
             </Stack>
           </Stack>
         </Stack>
-        <Bar rollDice={rollDice}/>
+        <Bar rollDice={rollDice} />
       </Stack>
     </>
   );
