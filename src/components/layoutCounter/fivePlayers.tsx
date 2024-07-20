@@ -1,17 +1,27 @@
 import { Stack } from "@mui/material";
+import { useLayoutEffect, useRef, useState } from "react";
 import { RollDice } from "../../@types";
 import { mana } from "../../data/mana";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { CounterIndividual } from "../counterIndividual";
 import { Bar } from "./bar";
 
-export const FivePlayers = ({rollDice}: RollDice) => {
+export const FivePlayers = ({ rollDice }: RollDice) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const refFive = useRef(null) as any;
+  const [width, setWidth] = useState(refFive?.current?.offsetWidth);
   const { getConfigPlayer } = useGamePlayers();
   const player1 = getConfigPlayer(1);
   const player2 = getConfigPlayer(2);
   const player3 = getConfigPlayer(3);
   const player4 = getConfigPlayer(4);
   const player5 = getConfigPlayer(5);
+
+  useLayoutEffect(() => {
+    if (!width) {
+      setWidth(refFive?.current?.offsetWidth);
+    }
+  }, []);
 
   return (
     <>
@@ -117,36 +127,38 @@ export const FivePlayers = ({rollDice}: RollDice) => {
             </Stack>
           </Stack>
         </Stack>
-        <Stack
-          flexGrow={1}
-          justifyContent={"center"}
-          alignItems={"center"}
-          width={"calc(50% - 40px)"}
-          height={"50%"}
-          gap={1}
-        >
+
+        <Stack width={`${width}px`}>
           <Stack
+            ref={refFive}
             flexGrow={1}
-            borderRadius={5}
-            sx={{
-              backgroundImage: `url(${player5?.bgMagic})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              transform: "rotate(270deg)",
-            }}
-            bgcolor={player5?.color ? mana[player5?.color]?.color : "#34495E"}
-            overflow={"hidden"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            gap={1}
           >
             <Stack
-              width={"100%"}
-              height={"100%"}
-              sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+              borderRadius={5}
+              height={`${width}px`}
+              sx={{
+                backgroundImage: `url(${player5?.bgMagic})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                transform: "rotate(270deg)",
+              }}
+              bgcolor={player5?.color ? mana[player5?.color]?.color : "#34495E"}
+              overflow={"hidden"}
             >
-              <CounterIndividual playerId={5} />
+              <Stack
+                width={"100%"}
+                height={"100%"}
+                sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+              >
+                <CounterIndividual playerId={5} />
+              </Stack>
             </Stack>
           </Stack>
         </Stack>
-        <Bar rollDice={rollDice}/>
+        <Bar rollDice={rollDice} />
       </Stack>
     </>
   );

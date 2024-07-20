@@ -41,7 +41,7 @@ export const dataLayers = (playerId: number) => {
       sideRight: <OutherCounter playerId={playerId} direction="right" />,
     },
     commanderTax: {
-      title: `CommanderTax Counter`,
+      title: `CommanderTax`,
       main: <CounterCommanderTax playerId={playerId} />,
       footer: <></>,
       sideLeft: <MoreCounter playerId={playerId} direction="left" />,
