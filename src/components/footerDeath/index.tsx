@@ -3,9 +3,11 @@ import { FaInfinity } from "react-icons/fa";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { Stack, Typography } from "@mui/material";
 import { checkDeathCommander } from "../../helpers/checkDeathCommander";
+import { configCounter } from "../../data/configCounter";
+import { defineSize } from "../../helpers/defineSize";
 
 export const FooterDeath = ({ playerId }: { playerId: number }) => {
-  const { updatePlayers, getPlayer } = useGamePlayers();
+  const { updatePlayers, getPlayer, players } = useGamePlayers();
   const player = getPlayer(playerId);
 
   const checkDamage = () => {
@@ -27,7 +29,7 @@ export const FooterDeath = ({ playerId }: { playerId: number }) => {
           <Stack alignItems={"center"}>
             <GiWingedSword
               color="white"
-              size={30}
+              size={configCounter.iconButton[defineSize(players.length)]}
               onClick={() =>
                 updatePlayers({
                   ...player,
@@ -53,7 +55,7 @@ export const FooterDeath = ({ playerId }: { playerId: number }) => {
         <Stack alignItems={"center"}>
           <FaInfinity
             color="white"
-            size={30}
+            size={configCounter.iconButton[defineSize(players.length)]}
             onClick={() =>
               updatePlayers({
                 ...player,

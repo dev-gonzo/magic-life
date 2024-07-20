@@ -11,9 +11,9 @@ export const Death = () => {
           flexGrow={1}
           gap={1}
         >
-          <FaSkullCrossbones size={60} color="white" />
+          <FaSkullCrossbones size={50} color="white" />
           <Typography
-            variant="body1"
+            variant="subtitle2"
             color={"white"}
             fontWeight={"bold"}
             textAlign={"center"}

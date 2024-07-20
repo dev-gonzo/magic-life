@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import { FaDotCircle } from "react-icons/fa";
 import {
   GiCheckedShield,
@@ -6,10 +6,12 @@ import {
   GiMedievalGate,
 } from "react-icons/gi";
 import { RiShieldFlashFill } from "react-icons/ri";
+import { Layer } from "../../@types";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
+import { CounterValue } from "../counterValue";
+import { IconBar } from "../iconBar";
 import { LeftRight } from "../LeftRight";
 import { Props } from "./types";
-import { Layer } from "../../@types";
 
 export const MoreCounter = ({ direction, playerId }: Props) => {
   const { getPlayer, updatePlayers, setShowTemp, showTemp, setMonarch } =
@@ -30,6 +32,8 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
       gap={2}
       color={"white"}
       padding={1}
+      justifyContent={"space-evenly"}
+      flexGrow={1}
     >
       <Stack
         flexDirection={"row"}
@@ -42,12 +46,8 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
       >
         <LeftRight
           direction={direction}
-          Value={
-            <Typography component={"span"} variant="caption">
-              {player?.energy}
-            </Typography>
-          }
-          Icon={<RiShieldFlashFill size={22} />}
+          Value={<CounterValue value={player.energy} />}
+          Icon={<IconBar Icon={RiShieldFlashFill} />}
         />
       </Stack>
       <Stack
@@ -61,12 +61,8 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
       >
         <LeftRight
           direction={direction}
-          Value={
-            <Typography component={"span"} variant="caption">
-              {player?.experience}
-            </Typography>
-          }
-          Icon={<GiCheckedShield size={22} />}
+          Value={<CounterValue value={player.experience} />}
+          Icon={<IconBar Icon={GiCheckedShield} />}
         />
       </Stack>
       <Stack
@@ -87,7 +83,7 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
               <></>
             )
           }
-          Icon={<GiMedievalGate size={22} />}
+          Icon={<IconBar Icon={GiMedievalGate} />}
         />
       </Stack>
       <Stack
@@ -102,13 +98,9 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
         <LeftRight
           direction={direction}
           Value={
-            player?.monarch ? (
-              <FaDotCircle size={10} color="yellow" />
-            ) : (
-              <></>
-            )
+            player?.monarch ? <FaDotCircle size={10} color="yellow" /> : <></>
           }
-          Icon={<GiImperialCrown size={22} />}
+          Icon={<IconBar Icon={GiImperialCrown} />}
         />
       </Stack>
     </Stack>
