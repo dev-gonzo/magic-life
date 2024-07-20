@@ -4,7 +4,7 @@ import { PageAbout } from "./page";
 export const routes = (): Routes[] => {
   return [
     {
-      path: "/about",
+      path: "/magic-life/about",
       element: PageAbout,
     },
   ];
