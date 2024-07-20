@@ -1,3 +1,4 @@
+import { RollDice } from "../../@types";
 import { getRegistredQtd } from "../../helpers/registredPlayers";
 import { EightPlayers } from "./eightPlayers";
 import { FivePlayers } from "./fivePlayers";
@@ -7,16 +8,14 @@ import { SixPlayers } from "./sixPlayers";
 import { ThreePlayers } from "./threePlayers";
 import { TwoPlayers } from "./twoPlayers";
 
-import { useState } from "react";
-
-export const LayoutCounter = () => {
+export const LayoutCounter = ({ rollDice }: RollDice) => {
   const players = getRegistredQtd();
 
   const layout = [
     <></>,
     <TwoPlayers key={1} />,
     <ThreePlayers key={2} />,
-    <FourPlayers key={3} />,
+    <FourPlayers key={3} rollDice={rollDice} />,
     <FivePlayers key={4} />,
     <SixPlayers key={5} />,
     <SevenPlayers key={6} />,

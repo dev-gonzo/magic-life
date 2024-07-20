@@ -12,10 +12,10 @@ export const CommanderDamage = ({ playerId }: Props) => {
       gap={0.5}
       flexWrap={"wrap"}
       justifyContent={"space-evenly"}
-      key={`commander-damage2-${Math.random()}`}
     >
-      {player?.commanderDamage?.map((item) => (
+      {player?.commanderDamage?.map((item,index) => (
         <Stack
+        key={`commander-damage-${playerId}-${index}`}
           width={35}
           height={25}
           borderRadius={1.5}

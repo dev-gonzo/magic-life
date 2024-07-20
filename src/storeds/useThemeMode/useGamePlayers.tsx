@@ -64,6 +64,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
             viewCommanderDamage: false,
             loses: false,
             immmortal: false,
+            sorted: false,
           });
         }
       } else if (!playersNumber && !oldPlayersQtd) {
@@ -82,6 +83,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
             viewCommanderDamage: false,
             loses: false,
             immmortal: false,
+            sorted: false,
           });
         }
       } else {
@@ -297,5 +299,19 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
       return {
         showTemp: undefined,
       };
+    }),
+
+  setSorted: (playerId) =>
+    set((state) => {
+      console.log(playerId)
+      const newInfoPlayers = state?.players?.map((item) => {
+        return {
+          ...item,
+          sorted: item?.player == playerId,
+        };
+      });
+
+      localStorage.setItem("players", JSON.stringify(newInfoPlayers));
+      return { players: newInfoPlayers };
     }),
 }));

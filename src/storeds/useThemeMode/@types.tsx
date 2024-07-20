@@ -42,6 +42,7 @@ export type PropsInfoPlayers = {
   ) => void;
 
   setMonarch: (playerId: number) => void;
+  setSorted: (playerId: number) => void;
   toogleShowCommander: (playerId: number) => void;
   setShowTemp: (playerId: number, layer: Layer) => void;
   cleanShowTemp: () => void;

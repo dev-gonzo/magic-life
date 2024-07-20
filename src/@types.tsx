@@ -22,6 +22,7 @@ export type InfoPlayer = {
   viewCommanderDamage: boolean;
   loses: boolean;
   immmortal: boolean;
+  sorted: boolean
 };
 
 export type ConfigPlayer = {
@@ -57,6 +58,10 @@ export type Layers = {
 export type Position = "horizontal" | "vertical";
 
 export type DirectionSide = "left" | "right";
+
+export type RollDice = {
+  rollDice: () => void;
+};
 
 export type Layer =
   | "life"

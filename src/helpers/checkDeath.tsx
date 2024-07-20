@@ -13,7 +13,6 @@ export const checkDeath = (playerNumber: number, actionDeath: () => void) => {
 
     const player = infoPlayers[indexPlayer];
 
-    console.log(player);
     if (
       !player?.loses &&
       !player?.immmortal &&

@@ -1,10 +1,11 @@
 import { Stack } from "@mui/material";
+import { RollDice } from "../../@types";
+import { mana } from "../../data/mana";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { CounterIndividual } from "../counterIndividual";
 import { Bar } from "./bar";
-import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
-import { mana } from "../../data/mana";
 
-export const FourPlayers = () => {
+export const FourPlayers = ({rollDice}: RollDice) => {
   const { getConfigPlayer } = useGamePlayers();
   const player1 = getConfigPlayer(1);
   const player2 = getConfigPlayer(2);
@@ -115,7 +116,7 @@ export const FourPlayers = () => {
             </Stack>
           </Stack>
         </Stack>
-        <Bar />
+        <Bar rollDice={rollDice}/>
       </Stack>
     </>
   );
