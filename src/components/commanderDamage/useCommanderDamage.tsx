@@ -1,7 +1,7 @@
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 
 export const useCommanderDamage = (playerId: number) => {
-  const { players, getPlayer } = useGamePlayers();
+  const { players, getPlayer, getConfigPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
 
   const listCommander = players.map((item) => {
@@ -14,7 +14,7 @@ export const useCommanderDamage = (playerId: number) => {
       damageCommander1: damageCommander?.find((item) => item?.commander == 1)
         ?.damage ?? 0,
       damageCommander2: damageCommander?.find((item) => item?.commander == 2)
-        ?.damage,
+        ?.damage ?? getConfigPlayer(item?.player)?.parther ? 0 : undefined,
     };
   });
 

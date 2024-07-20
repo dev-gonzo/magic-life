@@ -1,6 +1,7 @@
 import { IconButton, Stack, Typography } from "@mui/material";
 import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
+import { mana } from "../../data/mana";
 
 export const CounterDamage = ({
   playerId,
@@ -26,7 +27,7 @@ any) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-          bgcolor={player?.color ? player?.color: "#34495E"}
+          bgcolor={player?.color ? mana[player.color]?.color : "#34495E"}
         >
           <Stack>
             <IconButton

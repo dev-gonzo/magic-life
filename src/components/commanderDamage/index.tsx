@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
+import { CounterDamage } from "./counterDamage";
 import { Props } from "./types";
 import { useCommanderDamage } from "./useCommanderDamage";
-import { CounterDamage } from "./counterDamage";
 
 export const CommanderDamage = ({ playerId }: Props) => {
   const { listCommander } = useCommanderDamage(playerId);
@@ -9,7 +9,11 @@ export const CommanderDamage = ({ playerId }: Props) => {
   return (
     <>
       {listCommander?.map((item, index) => (
-        <Stack borderRadius={2} overflow={"hidden"} key={`commander-damage-${index}`}>
+        <Stack
+          borderRadius={2}
+          overflow={"hidden"}
+          key={`commander-damage-${index}`}
+        >
           <CounterDamage
             playerId={playerId}
             playerCommander={item?.playerCommander}
