@@ -6,11 +6,15 @@ import {
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { Props } from "./types";
 import { useCounterCommanderTax } from "./useCounterCommanderTax";
+import { defineSize } from "../../helpers/defineSize";
+import { configCounter } from "../../data/configCounter";
+import { Variant } from "@mui/material/styles/createTypography";
 
 export const CounterCommanderTax = ({ playerId }: Props) => {
   const { addCommanderTax, subCommanderTax } = useCounterCommanderTax(playerId);
-  const { getPlayer } = useGamePlayers();
+  const { getPlayer, players } = useGamePlayers();
   const player = getPlayer(playerId);
+  const size = defineSize(players.length);
 
   return (
     <>
@@ -20,13 +24,13 @@ export const CounterCommanderTax = ({ playerId }: Props) => {
         flexDirection={"row"}
       >
         <Box>
-          <Button onClick={() => subCommanderTax()} sx={{ color: "white" }}>
-            <TbArrowBadgeLeftFilled size={40} />
+          <Button onClick={() => subCommanderTax()} sx={{ color: "white",  minWidth: "unset" }}>
+            <TbArrowBadgeLeftFilled size={configCounter?.arrowAction[size]} />
           </Button>
         </Box>
         <Box>
           <Typography
-            variant="h3"
+            variant={configCounter.fontLife[size] as Variant}
             color={"white"}
             fontWeight={"bold"}
             fontFamily={"monospace"}
@@ -38,9 +42,9 @@ export const CounterCommanderTax = ({ playerId }: Props) => {
         <Box>
           <Button
             onClick={() => addCommanderTax()}
-            sx={{ color: "white", textShadow: "2px 2px black" }}
+            sx={{ color: "white", minWidth: "unset" }}
           >
-            <TbArrowBadgeRightFilled size={40} />
+            <TbArrowBadgeRightFilled size={configCounter?.arrowAction[size]} />
           </Button>
         </Box>
       </Stack>

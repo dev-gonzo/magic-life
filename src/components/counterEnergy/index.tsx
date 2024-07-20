@@ -15,6 +15,7 @@ export const CounterEnergy = ({ playerId }: Props) => {
   const { getPlayer, players } = useGamePlayers();
   const player = getPlayer(playerId);
   const size = defineSize(players.length);
+  
   return (
     <>
       <Stack
