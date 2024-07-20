@@ -5,7 +5,7 @@ import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { CounterIndividual } from "../counterIndividual";
 import { Bar } from "./bar";
 
-export const TwoPlayers = ({rollDice}: RollDice) => {
+export const TwoPlayers = ({ rollDice }: RollDice) => {
   const { getConfigPlayer } = useGamePlayers();
   const player1 = getConfigPlayer(1);
   const player2 = getConfigPlayer(2);
@@ -24,6 +24,7 @@ export const TwoPlayers = ({rollDice}: RollDice) => {
           justifyContent={"center"}
           width={"calc(50% - 40px)"}
           gap={1}
+          paddingY={1}
         >
           <Stack
             flexGrow={1}
@@ -32,7 +33,7 @@ export const TwoPlayers = ({rollDice}: RollDice) => {
               backgroundImage: `url(${player1?.bgMagic})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              transform: "rotate(180deg)",
+              transform: "rotate(90deg)",
             }}
             bgcolor={player1?.color ? mana[player1?.color]?.color : "#34495E"}
             height={"50%"}
@@ -46,6 +47,14 @@ export const TwoPlayers = ({rollDice}: RollDice) => {
               <CounterIndividual playerId={1} />
             </Stack>
           </Stack>
+        </Stack>
+        <Stack
+          flexGrow={1}
+          justifyContent={"center"}
+          width={"calc(50% - 40px)"}
+          gap={1}
+          paddingY={1}
+        >
           <Stack
             height={"50%"}
             flexGrow={1}
@@ -54,6 +63,7 @@ export const TwoPlayers = ({rollDice}: RollDice) => {
               backgroundImage: `url(${player2?.bgMagic})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
+              transform: "rotate(270deg)",
             }}
             bgcolor={player2?.color ? mana[player2?.color]?.color : "#34495E"}
             overflow={"hidden"}
@@ -67,7 +77,7 @@ export const TwoPlayers = ({rollDice}: RollDice) => {
             </Stack>
           </Stack>
         </Stack>
-        <Bar rollDice={rollDice}/>
+        <Bar rollDice={rollDice} />
       </Stack>
     </>
   );
