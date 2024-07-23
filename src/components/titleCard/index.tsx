@@ -3,6 +3,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { BiSolidMedal } from "react-icons/bi";
+import { mana } from "../../data/mana";
 
 export const TitleCard = ({
   playerId,
@@ -13,47 +14,51 @@ export const TitleCard = ({
 }) => {
   const navigate = useNavigate();
   const { getConfigPlayer, getPlayer } = useGamePlayers();
-  const configPlayer = getConfigPlayer(playerId);
+  const playerConfig = getConfigPlayer(playerId);
   const player = getPlayer(playerId);
+
+  const color =
+    playerConfig?.color && !playerConfig?.bgMagic
+      ? mana[playerConfig?.color]?.contrast
+      : "white";
+
   return (
     <>
       <Stack direction={"row"} gap={0.3} alignItems={"center"} paddingTop={0.5}>
         {title ? (
           <Typography
             variant="overline"
-            color={"white"}
+            color={color}
             fontWeight={"bold"}
             fontFamily={"monospace"}
-            sx={{ textShadow: "1px 1px black", lineHeight: 0 }}
             component={"span"}
-            paddingTop={2}
+            paddingTop={0.5}
           >
             {title}
           </Typography>
         ) : (
           <>
-            {player?.sorted ? <BiSolidMedal color="white" /> : null}
+            {player?.sorted ? <BiSolidMedal color={color} /> : null}
 
             <Typography
               variant="overline"
-              color={"white"}
+              color={color}
               fontWeight={"bold"}
               fontFamily={"monospace"}
-              sx={{ textShadow: "1px 1px black", lineHeight: 0 }}
               component={"span"}
+              marginLeft={0.8}
             >
-              {configPlayer?.playerName
-                ? configPlayer?.playerName
+              {playerConfig?.playerName
+                ? playerConfig?.playerName
                 : `Player ${playerId}`}
             </Typography>
             <IconButton
               size="small"
-              color="inherit"
               onClick={() =>
-                navigate("/edit-player", { state: { playerId: playerId } })
+                navigate("/magic-life/edit-player", { state: { playerId: playerId } })
               }
             >
-              <FaUserEdit color="white" />
+              <FaUserEdit color={color} />
             </IconButton>
           </>
         )}

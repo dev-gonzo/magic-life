@@ -4,7 +4,7 @@ import { PageEditPlayer } from "./page";
 export const routes = (): Routes[] => {
   return [
     {
-      path: "/edit-player",
+      path: "/magic-life/edit-player",
       element: PageEditPlayer,
     },
   ];

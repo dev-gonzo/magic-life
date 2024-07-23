@@ -12,11 +12,19 @@ import { CounterValue } from "../counterValue";
 import { IconBar } from "../iconBar";
 import { LeftRight } from "../LeftRight";
 import { Props } from "./types";
+import { mana } from "../../data/mana";
 
 export const MoreCounter = ({ direction, playerId }: Props) => {
-  const { getPlayer, updatePlayers, setShowTemp, showTemp, setMonarch } =
-    useGamePlayers();
+  const {
+    getPlayer,
+    updatePlayers,
+    setShowTemp,
+    showTemp,
+    getConfigPlayer,
+    setMonarch,
+  } = useGamePlayers();
   const player = getPlayer(playerId);
+  const playerConfig = getConfigPlayer(playerId);
 
   const toggleControl = (value: Layer) => {
     if (showTemp?.layer != value) {
@@ -24,13 +32,17 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
     }
   };
 
+  const color =
+    playerConfig?.color && !playerConfig?.bgMagic
+      ? mana[playerConfig?.color]?.contrast
+      : "white";
+
   return (
     <Stack
       paddingY={1}
       flexWrap={"nowrap"}
       alignItems={"flex-start"}
       gap={2}
-      color={"white"}
       padding={1}
       justifyContent={"space-evenly"}
       flexGrow={1}
@@ -46,8 +58,8 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
       >
         <LeftRight
           direction={direction}
-          Value={<CounterValue value={player.energy} />}
-          Icon={<IconBar Icon={RiShieldFlashFill} />}
+          Value={<CounterValue value={player.energy} playerId={playerId} />}
+          Icon={<IconBar Icon={RiShieldFlashFill} contrast={color} />}
         />
       </Stack>
       <Stack
@@ -61,8 +73,8 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
       >
         <LeftRight
           direction={direction}
-          Value={<CounterValue value={player.experience} />}
-          Icon={<IconBar Icon={GiCheckedShield} />}
+          Value={<CounterValue value={player.experience} playerId={playerId} />}
+          Icon={<IconBar Icon={GiCheckedShield} contrast={color} />}
         />
       </Stack>
       <Stack
@@ -83,7 +95,7 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
               <></>
             )
           }
-          Icon={<IconBar Icon={GiMedievalGate} />}
+          Icon={<IconBar Icon={GiMedievalGate} contrast={color} />}
         />
       </Stack>
       <Stack
@@ -100,7 +112,7 @@ export const MoreCounter = ({ direction, playerId }: Props) => {
           Value={
             player?.monarch ? <FaDotCircle size={10} color="yellow" /> : <></>
           }
-          Icon={<IconBar Icon={GiImperialCrown} />}
+          Icon={<IconBar Icon={GiImperialCrown} contrast={color} />}
         />
       </Stack>
     </Stack>

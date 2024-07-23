@@ -25,7 +25,7 @@ export const CounterIndividual = ({ playerId }: Props) => {
             flexWrap={"wrap"}
             gap={1}
           >
-            <Death />
+            <Death playerId={playerId}/>
           </Stack>
           <Stack>
             <FooterDeath playerId={playerId} />

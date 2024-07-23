@@ -39,12 +39,12 @@ export const PageClearPlayers = () => {
               onClick={() => {
                 initGame(players?.length)
                 resetConfigPlayers();
-                navigate("/counter");
+                navigate("/magic-life/counter");
               }}
             >
               <FaCheck size={30} color="black" />
             </IconButton>
-            <IconButton onClick={() => navigate("/counter")}>
+            <IconButton onClick={() => navigate("/magic-life/counter")}>
               <RiCloseCircleFill size={30} color="black" />
             </IconButton>
           </Stack>

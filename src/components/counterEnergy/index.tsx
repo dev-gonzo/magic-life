@@ -9,13 +9,19 @@ import { useCounterEnergy } from "./useCounterEnergy";
 import { configCounter } from "../../data/configCounter";
 import { defineSize } from "../../helpers/defineSize";
 import { Variant } from "@mui/material/styles/createTypography";
+import { mana } from "../../data/mana";
 
 export const CounterEnergy = ({ playerId }: Props) => {
   const { addEnergy, subEnergy } = useCounterEnergy(playerId);
-  const { getPlayer, players } = useGamePlayers();
+  const { getPlayer, players, getConfigPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
   const size = defineSize(players.length);
+  const playerConfig = getConfigPlayer(playerId);
   
+  const color =
+    playerConfig?.color && !playerConfig?.bgMagic
+      ? mana[playerConfig?.color]?.contrast
+      : "white";
   return (
     <>
       <Stack
@@ -24,17 +30,16 @@ export const CounterEnergy = ({ playerId }: Props) => {
         flexDirection={"row"}
       >
         <Box>
-          <Button onClick={() => subEnergy()} sx={{ color: "white",  minWidth: "unset" }}>
+          <Button onClick={() => subEnergy()} sx={{ color: color,  minWidth: "unset" }}>
             <TbArrowBadgeLeftFilled size={configCounter?.arrowAction[size]} />
           </Button>
         </Box>
         <Box>
           <Typography
             variant={configCounter.fontLife[size] as Variant}
-            color={"white"}
+            color={color}
             fontWeight={"bold"}
             fontFamily={"monospace"}
-            sx={{ textShadow: "2px 2px black" }}
           >
             {player?.energy}
           </Typography>
@@ -42,7 +47,7 @@ export const CounterEnergy = ({ playerId }: Props) => {
         <Box>
           <Button
             onClick={() => addEnergy()}
-            sx={{ color: "white",  minWidth: "unset" }}
+            sx={{ color:color,  minWidth: "unset" }}
           >
             <TbArrowBadgeRightFilled size={configCounter?.arrowAction[size]} />
           </Button>

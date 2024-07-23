@@ -1,20 +1,27 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
+import { Variant } from "@mui/material/styles/createTypography";
 import {
   TbArrowBadgeLeftFilled,
   TbArrowBadgeRightFilled,
 } from "react-icons/tb";
+import { configCounter } from "../../data/configCounter";
+import { mana } from "../../data/mana";
+import { defineSize } from "../../helpers/defineSize";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { Props } from "./types";
 import { useCounterRad } from "./useCounterRad";
-import { defineSize } from "../../helpers/defineSize";
-import { configCounter } from "../../data/configCounter";
-import { Variant } from "@mui/material/styles/createTypography";
 
 export const CounterRad = ({ playerId }: Props) => {
   const { addRad, subRad } = useCounterRad(playerId);
-  const { getPlayer, players } = useGamePlayers();
+  const { getPlayer, players, getConfigPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
   const size = defineSize(players.length);
+  const playerConfig = getConfigPlayer(playerId);
+  
+  const color =
+    playerConfig?.color && !playerConfig?.bgMagic
+      ? mana[playerConfig?.color]?.contrast
+      : "white";
 
   return (
     <>
@@ -24,17 +31,16 @@ export const CounterRad = ({ playerId }: Props) => {
         flexDirection={"row"}
       >
         <Box>
-          <Button onClick={() => subRad()} sx={{ color: "white",  minWidth: "unset" }}>
+          <Button onClick={() => subRad()} sx={{ color: color,  minWidth: "unset" }}>
             <TbArrowBadgeLeftFilled size={configCounter?.arrowAction[size]} />
           </Button>
         </Box>
         <Box>
           <Typography
             variant={configCounter.fontLife[size] as Variant}
-            color={"white"}
+            color={color}
             fontWeight={"bold"}
             fontFamily={"monospace"}
-            sx={{ textShadow: "2px 2px black" }}
           >
             {player?.rad}
           </Typography>
@@ -42,7 +48,7 @@ export const CounterRad = ({ playerId }: Props) => {
         <Box>
           <Button
             onClick={() => addRad()}
-            sx={{ color: "white",  minWidth: "unset" }}
+            sx={{ color: color,  minWidth: "unset" }}
           >
             <TbArrowBadgeRightFilled size={configCounter?.arrowAction[size]} />
           </Button>

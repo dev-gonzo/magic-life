@@ -1,11 +1,13 @@
 import { Stack, Typography } from "@mui/material";
+import { mana } from "../../data/mana";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { Props } from "./types";
-import { mana } from "../../data/mana";
+
 
 export const CommanderDamage = ({ playerId }: Props) => {
   const { getPlayer, addCommanderDamage, getConfigPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
+  const playerConfig = getConfigPlayer(playerId); 
 
   return (
     <Stack
@@ -15,7 +17,7 @@ export const CommanderDamage = ({ playerId }: Props) => {
       justifyContent={"space-evenly"}
     >
       {player?.commanderDamage?.map((item, index) => {
-        const playerConfig = getConfigPlayer(item?.player);
+        const playerConfigDamage = getConfigPlayer(item?.player);
         return (
           <Stack
             key={`commander-damage-${playerId}-${index}`}
@@ -33,12 +35,14 @@ export const CommanderDamage = ({ playerId }: Props) => {
               backgroundPosition: "center",
             }}
             bgcolor={
-              playerConfig?.color ? mana[playerConfig.color]?.color : "#34495E"
+              playerConfigDamage?.color ? mana[playerConfigDamage.color]?.color : "#34495E"
             }
           >
             <Typography
               variant="body1"
-              color={"white"}
+              color={ playerConfig?.color
+                ? mana[playerConfig?.color]?.contrast
+                : "white"}
               fontWeight={"bold"}
               fontFamily={"monospace"}
               sx={{ textShadow: "1px 1px black" }}

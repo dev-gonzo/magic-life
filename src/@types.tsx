@@ -9,6 +9,7 @@ export type Routes = {
 };
 
 export type InfoPlayer = {
+  
   player: number;
   life: number;
   commanderDamage: DamageCommander[];
@@ -22,7 +23,7 @@ export type InfoPlayer = {
   viewCommanderDamage: boolean;
   loses: boolean;
   immmortal: boolean;
-  sorted: boolean
+  sorted: boolean;
 };
 
 export type ConfigPlayer = {
@@ -31,6 +32,7 @@ export type ConfigPlayer = {
   parther: boolean;
   color?: ColorMagic;
   bgMagic?: string;
+  colorContrast?: string;
 };
 
 export type ColorMagic =

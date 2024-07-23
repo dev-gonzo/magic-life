@@ -3,17 +3,24 @@ import { BsShieldFillPlus } from "react-icons/bs";
 import { FaRadiation } from "react-icons/fa6";
 import { GiPirateGrave } from "react-icons/gi";
 import { Layer } from "../../@types";
-import Phyrexia from "../../assets/phyrexa.svg";
+import { mana } from "../../data/mana";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { CounterValue } from "../counterValue";
 import { IconBar } from "../iconBar";
+import { IconPhyrexia } from "../iconPhyrexia";
 import { LeftRight } from "../LeftRight";
 import { Props } from "./types";
 
 export const OutherCounter = ({ direction, playerId }: Props) => {
-  const { getPlayer, updatePlayers, setShowTemp, showTemp, players } =
-    useGamePlayers();
+  const {
+    getPlayer,
+    updatePlayers,
+    setShowTemp,
+    showTemp,
+    getConfigPlayer,
+  } = useGamePlayers();
   const player = getPlayer(playerId);
+  const playerConfig = getConfigPlayer(playerId);
 
   const toggleControl = (value: Layer) => {
     if (showTemp?.layer != value) {
@@ -21,17 +28,10 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
     }
   };
 
-  const sizePhyrexia = () => {
-    if (players.length >= 5) {
-      return 28;
-    }
-
-    if (players.length == 4) {
-      return 30;
-    }
-
-    return 32;
-  };
+  const color =
+    playerConfig?.color && !playerConfig?.bgMagic
+      ? mana[playerConfig?.color]?.contrast
+      : "white";
 
   return (
     <Stack
@@ -39,7 +39,6 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
       flexWrap={"nowrap"}
       alignItems={"flex-end"}
       gap={2}
-      color={"white"}
       padding={1}
       justifyContent={"space-evenly"}
       flexGrow={1}
@@ -55,8 +54,10 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
       >
         <LeftRight
           direction={direction}
-          Value={<CounterValue value={player.commanderTax} />}
-          Icon={<IconBar Icon={BsShieldFillPlus} />}
+          Value={
+            <CounterValue value={player.commanderTax} playerId={playerId} />
+          }
+          Icon={<IconBar Icon={BsShieldFillPlus} contrast={color} />}
         />
       </Stack>
 
@@ -69,21 +70,17 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
           updatePlayers({
             ...player,
             infect: player?.infect + 1,
-            life: player?.life - 1,
           });
         }}
       >
         <LeftRight
           direction={direction}
           Icon={
-            <img
-              src={Phyrexia}
-              width={sizePhyrexia()}
-              height={25}
-              style={{ margin: -4 }}
-            />
+            
+              <IconPhyrexia color={color} />
+            
           }
-          Value={<CounterValue value={player.infect} />}
+          Value={<CounterValue value={player.infect} playerId={playerId} />}
         />
       </Stack>
       <Stack
@@ -97,8 +94,8 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
       >
         <LeftRight
           direction={direction}
-          Value={<CounterValue value={player.rad} />}
-          Icon={<IconBar Icon={FaRadiation} />}
+          Value={<CounterValue value={player.rad} playerId={playerId} />}
+          Icon={<IconBar Icon={FaRadiation} contrast={color} />}
         />
       </Stack>
 
@@ -117,7 +114,7 @@ export const OutherCounter = ({ direction, playerId }: Props) => {
         <LeftRight
           direction={direction}
           Value={<Typography component={"span"} variant="caption"></Typography>}
-          Icon={<IconBar Icon={GiPirateGrave} />}
+          Icon={<IconBar Icon={GiPirateGrave} contrast={color} />}
         />
       </Stack>
     </Stack>

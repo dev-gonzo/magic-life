@@ -1,8 +1,8 @@
 export const configCounter = {
   counterValue: {
-    small: 8,
-    normal: 10,
-    extend: 12,
+    small: 12,
+    normal: 16,
+    extend: 18,
   },
   dotMarked: {
     small: 6,
@@ -10,14 +10,14 @@ export const configCounter = {
     extend: 14,
   },
   iconBar: {
-    small: "18px",
-    normal: "22px",
-    extend: "26px",
+    small: "20px",
+    normal: "24px",
+    extend: "28px",
   },
   arrowAction: {
-    small: 22,
-    normal: 40,
-    extend: 48,
+    small: 18,
+    normal: 20,
+    extend: 26,
   },
   fontLife: {
     small: "h4",

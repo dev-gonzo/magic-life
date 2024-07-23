@@ -1,21 +1,36 @@
+import { IconButton } from "@mui/material";
 import { IconContext, IconType } from "react-icons";
 import { configCounter } from "../../data/configCounter";
-import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { defineSize } from "../../helpers/defineSize";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 
-export const IconBar = ({ Icon }: { Icon: IconType }) => {
+export const IconBar = ({
+  Icon,
+  contrast,
+  action,
+}: {
+  Icon: IconType;
+  action?: () => void;
+  contrast?: string;
+}) => {
   const { players } = useGamePlayers();
 
   return (
     <>
-      <IconContext.Provider
-        value={{
-          size: configCounter.iconBar[defineSize(players.length)],
-          color: "white",
-        }}
+      <IconButton
+        aria-label="add"
+        size="small"
+        onClick={action}
       >
-        <Icon />
-      </IconContext.Provider>
+        <IconContext.Provider
+          value={{
+            size: configCounter.iconBar[defineSize(players.length)],
+            color: contrast,
+          }}
+        >
+          <Icon />
+        </IconContext.Provider>
+      </IconButton>
     </>
   );
 };

@@ -9,12 +9,19 @@ import { useCounterCommanderTax } from "./useCounterCommanderTax";
 import { defineSize } from "../../helpers/defineSize";
 import { configCounter } from "../../data/configCounter";
 import { Variant } from "@mui/material/styles/createTypography";
+import { mana } from "../../data/mana";
 
 export const CounterCommanderTax = ({ playerId }: Props) => {
   const { addCommanderTax, subCommanderTax } = useCounterCommanderTax(playerId);
-  const { getPlayer, players } = useGamePlayers();
+  const { getPlayer, players, getConfigPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
   const size = defineSize(players.length);
+  const playerConfig = getConfigPlayer(playerId);
+  
+  const color =
+    playerConfig?.color && !playerConfig?.bgMagic
+      ? mana[playerConfig?.color]?.contrast
+      : "white";
 
   return (
     <>
@@ -24,17 +31,19 @@ export const CounterCommanderTax = ({ playerId }: Props) => {
         flexDirection={"row"}
       >
         <Box>
-          <Button onClick={() => subCommanderTax()} sx={{ color: "white",  minWidth: "unset" }}>
+          <Button
+            onClick={() => subCommanderTax()}
+            sx={{ color: { color }, minWidth: "unset" }}
+          >
             <TbArrowBadgeLeftFilled size={configCounter?.arrowAction[size]} />
           </Button>
         </Box>
         <Box>
           <Typography
             variant={configCounter.fontLife[size] as Variant}
-            color={"white"}
+            color={color}
             fontWeight={"bold"}
             fontFamily={"monospace"}
-            sx={{ textShadow: "2px 2px black" }}
           >
             {player?.commanderTax}
           </Typography>
@@ -42,7 +51,7 @@ export const CounterCommanderTax = ({ playerId }: Props) => {
         <Box>
           <Button
             onClick={() => addCommanderTax()}
-            sx={{ color: "white", minWidth: "unset" }}
+            sx={{ color: color, minWidth: "unset" }}
           >
             <TbArrowBadgeRightFilled size={configCounter?.arrowAction[size]} />
           </Button>

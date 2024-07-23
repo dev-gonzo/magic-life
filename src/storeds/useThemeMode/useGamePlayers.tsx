@@ -4,12 +4,20 @@ import { PropsInfoPlayers } from "./@types";
 import { ConfigPlayer, InfoPlayer } from "../../@types";
 import { RiShieldFlashFill } from "react-icons/ri";
 import { getStorageConfigPlayer } from "../../helpers/getStorageConfigPlayers";
+import { getStorageScreen } from "../../helpers/getStorageScreen";
 
 export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
   players: getStoragePlayer(),
+  screen: getStorageScreen(),
   configPlayers: getStorageConfigPlayer(),
   showTemp: undefined,
 
+  toggleScreen: () =>
+    set((state) => {
+      const screen = state?.screen == "table" ? "display" : "table";
+      localStorage.setItem("screen", JSON.stringify(screen));
+      return { screen: screen };
+    }),
   saveConfigPlayers: (configPlayer) =>
     set((state) => {
       const newConfigPlayers = state?.configPlayers;
@@ -303,7 +311,7 @@ export const useGamePlayers = create<PropsInfoPlayers>((set, get) => ({
 
   setSorted: (playerId) =>
     set((state) => {
-      console.log()
+      console.log();
       const newInfoPlayers = state?.players?.map((item) => {
         return {
           ...item,

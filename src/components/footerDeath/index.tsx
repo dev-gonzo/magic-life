@@ -1,14 +1,17 @@
-import { GiWingedSword } from "react-icons/gi";
+import { IconButton, Stack, Typography } from "@mui/material";
 import { FaInfinity } from "react-icons/fa";
-import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
-import { Stack, Typography } from "@mui/material";
-import { checkDeathCommander } from "../../helpers/checkDeathCommander";
+import { GiWingedSword } from "react-icons/gi";
 import { configCounter } from "../../data/configCounter";
+import { mana } from "../../data/mana";
+import { checkDeathCommander } from "../../helpers/checkDeathCommander";
 import { defineSize } from "../../helpers/defineSize";
+import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 
 export const FooterDeath = ({ playerId }: { playerId: number }) => {
-  const { updatePlayers, getPlayer, players } = useGamePlayers();
+  const { updatePlayers, getPlayer, players, getConfigPlayer } =
+    useGamePlayers();
   const player = getPlayer(playerId);
+  const playerConfig = getConfigPlayer(playerId);
 
   const checkDamage = () => {
     if (
@@ -22,14 +25,20 @@ export const FooterDeath = ({ playerId }: { playerId: number }) => {
     return true;
   };
 
+  const color =
+    playerConfig?.color && !playerConfig?.bgMagic
+      ? mana[playerConfig?.color]?.contrast
+      : "white";
+
+
   return (
     <>
       <Stack direction={"row"} justifyContent={"space-between"} gap={4}>
         {checkDamage() ? (
           <Stack alignItems={"center"}>
-            <GiWingedSword
-              color="white"
-              size={configCounter.iconButton[defineSize(players.length)]}
+            <IconButton
+              aria-label="add"
+              size="small"
               onClick={() =>
                 updatePlayers({
                   ...player,
@@ -37,14 +46,21 @@ export const FooterDeath = ({ playerId }: { playerId: number }) => {
                   immmortal: false,
                 })
               }
-            />
+            >
+              <GiWingedSword
+                color={color
+                }
+                size={configCounter.iconButton[defineSize(players.length)]}
+              />
+            </IconButton>
+
             <Typography
               variant="body1"
-              color={"white"}
+              color={color
+              }
               fontWeight={"bold"}
               textAlign={"center"}
               fontFamily={"monospace"}
-              sx={{ textShadow: "1px 1px black" }}
               fontSize={9}
             >
               Continue in the game
@@ -53,9 +69,9 @@ export const FooterDeath = ({ playerId }: { playerId: number }) => {
         ) : null}
 
         <Stack alignItems={"center"}>
-          <FaInfinity
-            color="white"
-            size={configCounter.iconButton[defineSize(players.length)]}
+          <IconButton
+            aria-label="add"
+            size="small"
             onClick={() =>
               updatePlayers({
                 ...player,
@@ -63,14 +79,21 @@ export const FooterDeath = ({ playerId }: { playerId: number }) => {
                 immmortal: true,
               })
             }
-          />
+          >
+            <FaInfinity
+              color={color
+              }
+              size={configCounter.iconButton[defineSize(players.length)]}
+            />
+          </IconButton>
+
           <Typography
             variant="body1"
-            color={"white"}
+            color={color
+            }
             fontWeight={"bold"}
             textAlign={"center"}
             fontFamily={"monospace"}
-            sx={{ textShadow: "1px 1px black" }}
             fontSize={9}
           >
             You can not lose

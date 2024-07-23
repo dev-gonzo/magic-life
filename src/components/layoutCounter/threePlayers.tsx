@@ -39,16 +39,12 @@ export const ThreePlayers = ({ rollDice }: RollDice) => {
             height={"50%"}
             overflow={"hidden"}
           >
-            <Stack
-              width={"100%"}
-              height={"100%"}
-              sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-            >
+            <Stack width={"100%"} height={"100%"}>
               <CounterIndividual playerId={1} />
             </Stack>
           </Stack>
         </Stack>
-        
+
         <Stack
           flexGrow={1}
           justifyContent={"center"}
@@ -68,11 +64,7 @@ export const ThreePlayers = ({ rollDice }: RollDice) => {
             bgcolor={player2?.color ? mana[player2?.color]?.color : "#34495E"}
             overflow={"hidden"}
           >
-            <Stack
-              width={"100%"}
-              height={"100%"}
-              sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-            >
+            <Stack width={"100%"} height={"100%"}>
               <CounterIndividual playerId={2} />
             </Stack>
           </Stack>
@@ -97,11 +89,7 @@ export const ThreePlayers = ({ rollDice }: RollDice) => {
             bgcolor={player3?.color ? mana[player3?.color]?.color : "#34495E"}
             overflow={"hidden"}
           >
-            <Stack
-              width={"100%"}
-              height={"100%"}
-              sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-            >
+            <Stack width={"100%"} height={"100%"}>
               <CounterIndividual playerId={3} />
             </Stack>
           </Stack>

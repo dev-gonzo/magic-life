@@ -1,27 +1,34 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
-import {
-  TbArrowBadgeLeftFilled,
-  TbArrowBadgeRightFilled,
-} from "react-icons/tb";
+import { Variant } from "@mui/material/styles/createTypography";
+import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
+import { configCounter } from "../../data/configCounter";
+import { mana } from "../../data/mana";
+import { defineSize } from "../../helpers/defineSize";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
+import { CommanderDamage } from "./commanderDamage";
 import { Props } from "./types";
 import { useCounterLife } from "./useCounterLife";
-import { CommanderDamage } from "./commanderDamage";
-import { configCounter } from "../../data/configCounter";
-import { defineSize } from "../../helpers/defineSize";
-import { Variant } from "@mui/material/styles/createTypography";
+
 
 export const CounterLife = ({ playerId }: Props) => {
   const { dropAdd, dropMinus, pressAdd, pressMinus } = useCounterLife(playerId);
-  const { getPlayer, addLife, subLife, players } = useGamePlayers();
+  const { getPlayer, addLife, subLife, players, getConfigPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
   const size = defineSize(players.length);
+  const playerConfig = getConfigPlayer(playerId); 
+
+  const color =
+  playerConfig?.color && !playerConfig?.bgMagic
+    ? mana[playerConfig?.color]?.contrast
+    : "white";
+    
   return (
     <>
       <Stack
         justifyContent={"center"}
         alignItems={"center"}
         flexDirection={"row"}
+      
       >
         <Button
           onClick={() => subLife(playerId)}
@@ -30,18 +37,18 @@ export const CounterLife = ({ playerId }: Props) => {
           onMouseLeave={dropMinus}
           onTouchStart={pressMinus}
           onTouchEnd={dropMinus}
-          sx={{ color: "white",  minWidth: "unset" }}
+          sx={{ color: color,  minWidth: "unset" }}
+
         >
-          <TbArrowBadgeLeftFilled size={configCounter?.arrowAction[size]} />
+          <FaCircleMinus size={configCounter?.arrowAction[size]}/>
         </Button>
 
-        <Box>
+        <Box margin={0.4}>
           <Typography
             variant={configCounter.fontLife[size] as Variant}
-            color={player?.life > 0 && player?.infect < 10 ? "white" : "red"}
-            fontWeight={"bold"}
+            color={player?.life > 0 && player?.infect < 10 ? color : "red"}
+            fontWeight={"700"}
             fontFamily={"monospace"}
-            sx={{ textShadow: "2px 2px black" }}
           >
             {player?.life}
           </Typography>
@@ -54,9 +61,9 @@ export const CounterLife = ({ playerId }: Props) => {
           onMouseLeave={dropAdd}
           onTouchStart={pressAdd}
           onTouchEnd={dropAdd}
-          sx={{ color: "white", minWidth: "unset" }}
+          sx={{ color: color, minWidth: "unset" }}
         >
-          <TbArrowBadgeRightFilled size={configCounter?.arrowAction[size]} />
+          <FaCirclePlus size={configCounter?.arrowAction[size]} />
         </Button>
       </Stack>
       <Box marginTop={0.5}>

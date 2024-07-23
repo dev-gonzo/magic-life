@@ -160,7 +160,7 @@ export const PageEditPlayer = () => {
               </Stack>
             </Stack>
           </Stack>
-          <IconButton onClick={() => navigate("/counter")}>
+          <IconButton onClick={() => navigate("/magic-life/counter")}>
             <FaCircleXmark size={22} color="black" />
           </IconButton>
         </Stack>

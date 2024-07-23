@@ -2,17 +2,28 @@ import { GiBarbute } from "react-icons/gi";
 import { useGamePlayers } from "../../storeds/useThemeMode/useGamePlayers";
 import { configCounter } from "../../data/configCounter";
 import { defineSize } from "../../helpers/defineSize";
+import { mana } from "../../data/mana";
+import { IconButton } from "@mui/material";
 
 export const FooterCommander = ({ playerId }: { playerId: number }) => {
-  const { toogleShowCommander, players } = useGamePlayers();
+  const { toogleShowCommander, players, getConfigPlayer } = useGamePlayers();
+  const playerConfig = getConfigPlayer(playerId);
   return (
     <>
-      <GiBarbute
-        color="white"
-        size={configCounter.iconButton[defineSize(players.length)]}
+      <IconButton
+        aria-label="add"
+        size="small"
+        sx={{ color: "white" }}
         onClick={() => toogleShowCommander(playerId)}
-        style={{marginBottom: 1}}
-      />
+      >
+        <GiBarbute
+          color={
+            playerConfig?.color ? mana[playerConfig?.color]?.contrast : "white"
+          }
+          size={configCounter.iconButton[defineSize(players.length)]}
+          style={{ marginBottom: 1 }}
+        />
+      </IconButton>
     </>
   );
 };

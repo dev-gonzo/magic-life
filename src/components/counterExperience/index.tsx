@@ -9,12 +9,19 @@ import { useCounterExperience } from "./useCounterExperience";
 import { configCounter } from "../../data/configCounter";
 import { defineSize } from "../../helpers/defineSize";
 import { Variant } from "@mui/material/styles/createTypography";
+import { mana } from "../../data/mana";
 
 export const CounterExperience = ({ playerId }: Props) => {
   const { addExperience, subExperience } = useCounterExperience(playerId);
-  const { getPlayer, players } = useGamePlayers();
+  const { getPlayer, players, getConfigPlayer } = useGamePlayers();
   const player = getPlayer(playerId);
   const size = defineSize(players.length);
+  const playerConfig = getConfigPlayer(playerId);
+  
+  const color =
+    playerConfig?.color && !playerConfig?.bgMagic
+      ? mana[playerConfig?.color]?.contrast
+      : "white";
 
   return (
     <>
@@ -24,17 +31,16 @@ export const CounterExperience = ({ playerId }: Props) => {
         flexDirection={"row"}
       >
         <Box>
-          <Button onClick={() => subExperience()} sx={{ color: "white", minWidth: "unset" }}>
+          <Button onClick={() => subExperience()} sx={{ color: color, minWidth: "unset" }}>
             <TbArrowBadgeLeftFilled size={configCounter?.arrowAction[size]} />
           </Button>
         </Box>
         <Box>
           <Typography
             variant={configCounter.fontLife[size] as Variant}
-            color={"white"}
+            color={color}
             fontWeight={"bold"}
             fontFamily={"monospace"}
-            sx={{ textShadow: "2px 2px black" }}
           >
             {player?.experience}
           </Typography>
@@ -42,7 +48,7 @@ export const CounterExperience = ({ playerId }: Props) => {
         <Box>
           <Button
             onClick={() => addExperience()}
-            sx={{ color: "white",  minWidth: "unset" }}
+            sx={{ color: color,  minWidth: "unset" }}
           >
             <TbArrowBadgeRightFilled size={configCounter?.arrowAction[size]}/>
           </Button>

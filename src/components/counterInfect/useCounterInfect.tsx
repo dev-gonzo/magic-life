@@ -9,7 +9,6 @@ export const useCounterInfect = (playerId: number) => {
     const newInfoPlayer: InfoPlayer = {
       ...player,
       infect: player?.infect + 1,
-      life: player?.life - 1,
     };
     setShowTemp(playerId, "infect");
     updatePlayers(newInfoPlayer);
@@ -20,7 +19,6 @@ export const useCounterInfect = (playerId: number) => {
       const newInfoPlayer: InfoPlayer = {
         ...player,
         infect: player?.infect - 1,
-        life: player?.life + 1,
       };
       updatePlayers(newInfoPlayer);
     }

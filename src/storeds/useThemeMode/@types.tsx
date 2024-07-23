@@ -11,6 +11,7 @@ export type Props = {
 
 export type PropsInfoPlayers = {
   players: InfoPlayer[];
+  screen: "table" | "display";
   configPlayers: ConfigPlayer[];
   showTemp?: {
     layer: Layer;
@@ -18,6 +19,8 @@ export type PropsInfoPlayers = {
     playerId: number;
     timestamp: number;
   };
+
+  toggleScreen: () => void;
 
   saveConfigPlayers: (configPlayer: ConfigPlayer) => void;
   getConfigPlayer: (playerId: number) => ConfigPlayer;
