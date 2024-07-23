@@ -9,41 +9,51 @@ import { CommanderDamage } from "./commanderDamage";
 import { Props } from "./types";
 import { useCounterLife } from "./useCounterLife";
 
-
 export const CounterLife = ({ playerId }: Props) => {
-  const { dropAdd, dropMinus, pressAdd, pressMinus } = useCounterLife(playerId);
-  const { getPlayer, addLife, subLife, players, getConfigPlayer } = useGamePlayers();
+  const { dropAdd, dropMinus, pressAdd, pressMinus, modCounter, tempCounter } =
+    useCounterLife(playerId);
+  const { getPlayer, addLife, subLife, players, getConfigPlayer } =
+    useGamePlayers();
   const player = getPlayer(playerId);
   const size = defineSize(players.length);
-  const playerConfig = getConfigPlayer(playerId); 
+  const playerConfig = getConfigPlayer(playerId);
+
 
   const color =
-  playerConfig?.color && !playerConfig?.bgMagic
-    ? mana[playerConfig?.color]?.contrast
-    : "white";
-    
+    playerConfig?.color && !playerConfig?.bgMagic
+      ? mana[playerConfig?.color]?.contrast
+      : "white";
+
   return (
     <>
       <Stack
         justifyContent={"center"}
         alignItems={"center"}
         flexDirection={"row"}
-      
       >
         <Button
-          onClick={() => subLife(playerId)}
+          onClick={() => {
+            tempCounter("sub");
+            subLife(playerId);
+          }}
           onMouseDown={pressMinus}
           onMouseUp={dropMinus}
           onMouseLeave={dropMinus}
           onTouchStart={pressMinus}
           onTouchEnd={dropMinus}
-          sx={{ color: color,  minWidth: "unset" }}
-
+          sx={{ color: color, minWidth: "unset" }}
         >
-          <FaCircleMinus size={configCounter?.arrowAction[size]}/>
+          <FaCircleMinus size={configCounter?.arrowAction[size]} />
         </Button>
 
         <Box margin={0.4}>
+          <Typography
+            color={player?.life > 0 && player?.infect < 10 ? color : "red"}
+            fontFamily={"monospace"}
+            textAlign={"center"}
+          >
+            {modCounter?.show ?  modCounter?.value : <>&nbsp;</>}
+          </Typography>
           <Typography
             variant={configCounter.fontLife[size] as Variant}
             color={player?.life > 0 && player?.infect < 10 ? color : "red"}
@@ -52,10 +62,20 @@ export const CounterLife = ({ playerId }: Props) => {
           >
             {player?.life}
           </Typography>
+          <Typography
+           color={player?.life > 0 && player?.infect < 10 ? color : "red"}
+           fontFamily={"monospace"}
+           textAlign={"center"}
+          >
+            &nbsp;
+          </Typography>
         </Box>
 
         <Button
-          onClick={() => addLife(playerId)}
+          onClick={() => {
+            tempCounter("add");
+            addLife(playerId);
+          }}
           onMouseDown={pressAdd}
           onMouseUp={dropAdd}
           onMouseLeave={dropAdd}
